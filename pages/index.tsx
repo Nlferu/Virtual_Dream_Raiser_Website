@@ -1,3 +1,9 @@
+import BlackHole from "@/components/blackHole"
+
 export default function Index() {
-  return <div>Index</div>;
+    return (
+        <main className="">
+            <BlackHole />
+        </main>
+    )
 }
