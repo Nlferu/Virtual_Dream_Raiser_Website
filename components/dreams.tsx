@@ -28,7 +28,7 @@ export default function Dreams() {
             </div>
 
             <div className="max-w-[100rem] flex items-center justify-center flex-wrap w-full gap-10 list-none">
-                {dreamsData.map((skill, index) => (
+                {dreamsData.map((dream, index) => (
                     <motion.li
                         className=""
                         key={index}
@@ -40,7 +40,9 @@ export default function Dreams() {
                         }}
                         custom={index}
                     >
-                        <DreamCard>{skill}</DreamCard>
+                        <React.Fragment key={index}>
+                            <DreamCard {...dream} />
+                        </React.Fragment>
                     </motion.li>
                 ))}
             </div>
