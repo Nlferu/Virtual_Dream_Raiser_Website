@@ -6,7 +6,7 @@ export default function Creator() {
     const handleCreateDream = async () => {}
 
     return (
-        <section id="creator" className="flex flex-col justify-center items-center scroll-mt-28 w-[min(100%,38rem)]">
+        <section id="creator" className="flex flex-col justify-center items-center scroll-mt-28 w-[min(100%,38rem)] z-30">
             <SectionHeading>Create Dream</SectionHeading>
             <div className="flex flex-col gap-6 w-[16rem] self-center">
                 {creatorInputs.map((input) => (

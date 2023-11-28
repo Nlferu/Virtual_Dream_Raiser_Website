@@ -19,9 +19,9 @@ const fadeInAnimationVariants = {
     }),
 }
 
-export default function Skills() {
+export default function Dreams() {
     return (
-        <section className="flex flex-col items-center mb-28 max-w-[53rem] scroll-mt-28 text-center sm:mb-40 z-50">
+        <section className="flex flex-col items-center mb-28 max-w-[53rem] scroll-mt-28 text-center sm:mb-40 z-30">
             <SectionHeading>Dreams</SectionHeading>
             <ul className="flex flex-wrap justify-center gap-2 text-lg text-gray-800">
                 {skillsData.map((skill, index) => (
