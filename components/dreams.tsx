@@ -2,7 +2,8 @@
 
 import React from "react"
 import SectionHeading from "./section-heading"
-import { skillsData } from "@/lib/data"
+import DreamCard from "./dream-card"
+import { dreamsData } from "@/lib/data"
 import { motion } from "framer-motion"
 
 const fadeInAnimationVariants = {
@@ -21,12 +22,15 @@ const fadeInAnimationVariants = {
 
 export default function Dreams() {
     return (
-        <section className="flex flex-col items-center mb-28 max-w-[53rem] scroll-mt-28 text-center sm:mb-40 z-30">
-            <SectionHeading>Dreams</SectionHeading>
-            <ul className="flex flex-wrap justify-center gap-2 text-lg text-gray-800">
-                {skillsData.map((skill, index) => (
+        <section id="dreams" className="scroll-mt-28 mb-28 sm:mb-40 z-30 w-full flex flex-col items-center justify-center">
+            <div className="max-w-[10rem]">
+                <SectionHeading>Dreams</SectionHeading>
+            </div>
+
+            <div className="max-w-[100rem] flex items-center justify-center flex-wrap w-full gap-10 list-none">
+                {dreamsData.map((skill, index) => (
                     <motion.li
-                        className="bg-white/10 borderBlack rounded-xl px-5 py-3"
+                        className=""
                         key={index}
                         variants={fadeInAnimationVariants}
                         initial="initial"
@@ -36,10 +40,10 @@ export default function Dreams() {
                         }}
                         custom={index}
                     >
-                        {skill}
+                        <DreamCard>{skill}</DreamCard>
                     </motion.li>
                 ))}
-            </ul>
+            </div>
         </section>
     )
 }

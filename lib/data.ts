@@ -27,24 +27,4 @@ export const creatorInputs = [
     { type: "text", name: "wallet", placeholder: "Wallet For Withdrawals" },
 ] as const
 
-export const skillsData = [
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-    "Some Data",
-] as const
+export const dreamsData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"] as const

@@ -1,4 +1,4 @@
-import BlackHole from "@/components/blackHole"
+import BlackHole from "@/components/black-hole"
 import Encryption from "@/components/encryption"
 import Dreams from "@/components/dreams"
 import Info from "@/components/info"
