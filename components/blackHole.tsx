@@ -1,13 +1,11 @@
 import React from "react"
 
-const BlackHole = () => {
+export default function BlackHole() {
     return (
-        <div className="">
-            <video autoPlay muted loop className="rotate-180 absolute top-[-25rem] h-full w-full left-0 z-[1] object-cover">
+        <div className="flex flex-col h-full w-full">
+            <video autoPlay muted loop className="rotate-180 absolute top-[-27.5rem] h-[108%] w-full left-0 z-[1] object-cover shadow-blur">
                 <source src="/blackhole.webm" type="video/webm" />
             </video>
         </div>
     )
 }
-
-export default BlackHole

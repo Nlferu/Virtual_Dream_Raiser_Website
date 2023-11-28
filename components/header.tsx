@@ -1,37 +1,33 @@
 import React from "react"
+import Link from "next/link"
 import Image from "next/image"
+import { links } from "@/lib/data"
 import { ConnectButton } from "web3uikit"
 
-/** @dev FIX Nav Bar positioning */
+/** @dev FIX Nav Bar positioning -> separate <a> for icon + name(align left) AND navbar (center)*/
 
 export default function Header() {
     return (
-        <div className="w-full h-[4rem] fixed top-0 shadow-lg shadow-[#2A0E61]/50 bg-[#03001417] backdrop-blur-md z-50 px-10">
-            <div className="w-full h-full flex flex-row items-center justify-start m-auto px-[0.7rem]">
-                <a className="h-auto w-auto flex flex-row items-center">
-                    <Image src="/icon.png" alt="logo" width={50} height={50} quality="95" priority={true} />
+        <div>
+            <div className="w-full h-[4rem] fixed top-0 shadow-lg shadow-lightPurple/50 bg-[#03001417] backdrop-blur-md z-[100]">
+                <div className="w-full h-full flex items-center justify-between px-10">
+                    <a className="flex items-center">
+                        <Image src="/icon.png" alt="logo" width={50} height={50} quality="95" priority={true} />
+                        <span className="font-bold ml-[0.7rem] hidden md:block text-gray-300">Virtual Dream Raiser</span>
+                    </a>
+                </div>
 
-                    <span className="font-bold ml-[0.7rem] hidden md:block text-gray-300">Virtual Dream Raiser</span>
-                </a>
-
-                <div className="w-[40rem] h-full flex flex-row items-center ml-[23rem]">
-                    <div
-                        className="flex items-center justify-between w-full h-auto border border-[#7042f861] bg-[#0300145e] px-[1.5rem] py-[0.7rem]
-                                   rounded-full text-gray-200"
-                    >
-                        <a href="#XXX" className="cursor-pointer">
-                            XXX
-                        </a>
-                        <a href="#YYYY" className="cursor-pointer">
-                            YYYY
-                        </a>
-                        <a href="#ZZZZZ" className="cursor-pointer">
-                            ZZZZZ
-                        </a>
+                <div className="w-full flex pr-2 xl:pr-0 justify-end xl:justify-center mt-[-3.5rem]">
+                    <div className="w-[24rem] md:w-[30rem] lg:w-[40rem] flex justify-between items-center border border-darkPurple bg-[#0300145e] px-[1.5rem] py-[0.7rem] rounded-full text-gray-200 list-none">
+                        {links.map((link) => (
+                            <li key={link.hash}>
+                                <Link href={link.hash}>{link.name}</Link>
+                            </li>
+                        ))}
                     </div>
                 </div>
             </div>
-            <div className="flex justify-end py-[1rem]">
+            <div className="w-full fixed top-0 flex justify-center sm:justify-end py-[5rem] z-[60]">
                 <ConnectButton moralisAuth={false} />
             </div>
         </div>
