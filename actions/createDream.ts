@@ -1,10 +1,11 @@
+import { useState } from "react"
+import { ethers } from "ethers"
+import contract from "@/contracts/VirtualDreamRaiser.json"
 import { validateString, getErrorMessage } from "@/lib/utils"
+import toast from "react-hot-toast"
 
-export const createDream = async (formData: FormData) => {
-    let data = ""
+const handleCreateDream = async (formData: FormData) => {
     const goal = formData.get("goal")
-    const expiration = formData.get("expiration")
-    const wallet = formData.get("wallet")
     const description = formData.get("description")
 
     if (!validateString(goal, 100)) {
@@ -18,18 +19,34 @@ export const createDream = async (formData: FormData) => {
             error: "Invalid message",
         }
     }
+}
 
-    try {
-        console.log("FORMS DATA: ", goal)
-        console.log("FORMS DATA: ", expiration)
-        console.log("FORMS DATA: ", wallet)
-        console.log("FORMS DATA: ", description)
-        data = "success"
-    } catch (error) {
-        return {
-            error: getErrorMessage(error),
-        }
-    }
+export async function handleSuccess() {
+    toast.success("Action Performed Successfully", {
+        style: {
+            border: "1px solid rgba(67, 52, 28, 0.8)",
+            background: "rgba(37, 32, 35, 0.4)",
+            padding: "15px",
+            color: "rgba(203, 207, 204, 1)",
+        },
+        iconTheme: {
+            primary: "rgba(49, 169, 73, 1)",
+            secondary: "black",
+        },
+    })
+}
 
-    return { data }
+export async function handleError() {
+    toast.error("Error Occured", {
+        style: {
+            border: "1px solid #713200",
+            background: "rgba(37, 32, 35, 0.4)",
+            padding: "15px",
+            color: "rgba(203, 207, 204, 1)",
+        },
+        iconTheme: {
+            primary: "#713200",
+            secondary: "black",
+        },
+    })
 }

@@ -1,57 +1,60 @@
 import React, { useState, ChangeEvent } from "react"
 import SectionHeading from "./section-heading"
-import toast from "react-hot-toast"
 import { creatorInputs } from "@/lib/data"
-import { createDream } from "@/actions/createDream"
+import { handleError, handleSuccess } from "@/actions/createDream"
 import SubmitButton from "./submit-button"
+import contract from "@/contracts/VirtualDreamRaiser.json"
+
+import { TestButton } from "@/components/button"
+import { useWeb3Contract, useMoralis } from "react-moralis"
+import { ethers } from "ethers"
+import { validateString, getErrorMessage } from "@/lib/utils"
 
 export default function Creator() {
-    const [formData, setFormData] = useState({
-        goal: "",
-        expiration: "",
-        wallet: "",
-        description: "",
-    })
+    const [formData, setFormData] = useState({ goal: "", expiration: "", wallet: "", description: "" })
+    const [isLoading, setIsLoading] = useState<boolean>(false)
+    /* @ts-ignore */
+    const { runContractFunction } = useWeb3Contract()
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+    const contractAddress = contract.address
+    const abi = contract.abi
 
-        const formDataToSend = new FormData()
-        formDataToSend.append("goal", formData.goal)
-        formDataToSend.append("expiration", formData.expiration)
-        formDataToSend.append("wallet", formData.wallet)
-        formDataToSend.append("description", formData.description)
+    const goal = formData.goal
+    const expiration = formData.expiration
+    const wallet = formData.wallet
+    const description = formData.description
 
-        const { data, error } = await createDream(formDataToSend)
+    const handleCreateDream = async () => {
+        setIsLoading(true)
 
-        if (error) {
-            toast.error(error, {
-                style: {
-                    border: "1px solid #713200",
-                    background: "rgba(37, 32, 35, 0.4)",
-                    padding: "15px",
-                    color: "rgba(203, 207, 204, 1)",
+        try {
+            console.log(`Goal: ${goal} Exp: ${expiration} Wallet: ${wallet} Desc: ${description}`)
+
+            // ETH Conversion To Wei
+            let convGoal = ethers.utils.parseEther(goal as string)
+
+            const createDream = {
+                abi: abi,
+                contractAddress: contractAddress,
+                functionName: "createDream",
+                params: {
+                    goal: convGoal,
+                    description: description,
+                    expiration: expiration,
+                    organizatorWallet: wallet,
                 },
-                iconTheme: {
-                    primary: "#713200",
-                    secondary: "black",
-                },
+            }
+
+            await runContractFunction({
+                params: createDream,
+                onSuccess: () => handleSuccess(),
+                onError: () => handleError(),
             })
-            return
+        } catch (error) {
+            console.log("Error 404 -> just kidding: Some unexpected error occured!")
+        } finally {
+            setIsLoading(false)
         }
-
-        toast.success("Action Performed Successfully", {
-            style: {
-                border: "1px solid rgba(67, 52, 28, 0.8)",
-                background: "rgba(37, 32, 35, 0.4)",
-                padding: "15px",
-                color: "rgba(203, 207, 204, 1)",
-            },
-            iconTheme: {
-                primary: "rgba(49, 169, 73, 1)",
-                secondary: "black",
-            },
-        })
 
         resetForm()
     }
@@ -74,7 +77,7 @@ export default function Creator() {
         <section id="creator" className="scroll-mt-28 flex flex-col justify-center items-center w-[min(100%,38rem)] z-30">
             <SectionHeading>Create Dream</SectionHeading>
 
-            <form className="flex flex-col" onSubmit={handleSubmit}>
+            <form className="flex flex-col">
                 <div className="flex flex-col gap-6 w-auto sm:w-[16rem] self-center">
                     {creatorInputs.map((input) => (
                         <input
@@ -104,7 +107,7 @@ export default function Creator() {
                         onChange={handleInputChange}
                     />
                 </div>
-                <SubmitButton />
+                <TestButton name="Create Dream" onClick={handleCreateDream} disabled={isLoading} />
             </form>
         </section>
     )

@@ -7,6 +7,10 @@ const config: Config = {
             backgroundImage: {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+
+                "linear-gradient": "linear-gradient(0, #5ddcff 10%, #3c67e3 40%, #ce4dbb)",
+                "linear-light": "linear-gradient(0, #5ddcff 0%, #3c67e3 10%, #ce4dbb)",
+                "linear-black": "linear-gradient(0, #000000 30%, #a4a4a4 250%, #ffffff)",
             },
             transitionTimingFunction: {
                 customBezier: "cubic-bezier(0.4,2.1,0.7,1)",
@@ -24,6 +28,17 @@ const config: Config = {
                 lightPurple: "#2A0E61",
                 darkPurple: "#7042f861",
                 devil: "rgba(12, 9, 9, 0.35)",
+            },
+            keyframes: {
+                fullSpin: {
+                    "100%": {
+                        transform: "rotate(360deg)",
+                    },
+                },
+            },
+            animation: {
+                fullSpin: "fullSpin 3s linear infinite",
+                delayedSpin: "fullSpin 3s linear infinite 1500ms",
             },
         },
     },
