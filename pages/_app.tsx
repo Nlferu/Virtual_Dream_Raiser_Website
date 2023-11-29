@@ -21,7 +21,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
             <MoralisProvider initializeOnMount={false}>
                 <NotificationProvider>
-                    <StarsCanvas />
                     <Header />
                     <Component {...pageProps} />
                     <Footer />

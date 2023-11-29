@@ -13,7 +13,8 @@ export default function Creator() {
                 <div className="flex flex-col gap-6 w-auto sm:w-[16rem] self-center">
                     {creatorInputs.map((input) => (
                         <input
-                            className="h-12 px-4 border-0 rounded-full bg-black/70 hover:bg-devil shadow-lg text-center shadow-lightPurple/50 text-gray-300 focus:text-gray-300 placeholder:text-gray-600 focus:outline focus:outline-2 focus:outline-offset-0 focus:outline-darkPurple transition-all duration-75"
+                            className="h-12 px-4 border-0 rounded-full bg-black/70 hover:bg-devil shadow-lg text-center shadow-lightPurple/50 text-gray-300
+                            focus:text-gray-300 placeholder:text-gray-600 focus:outline focus:outline-2 focus:outline-offset-0 focus:outline-darkPurple transition-all duration-75 caret-darkPurple"
                             key={input.name}
                             type={input.type}
                             name={input.name}
@@ -24,7 +25,9 @@ export default function Creator() {
                 </div>
                 <div className="flex flex-col w-[20rem] sm:w-[30rem] md:w-[40rem] self-center mt-[2rem] px-3">
                     <textarea
-                        className="h-52 p-4 px-3 rounded-lg border-0 bg-black/70 hover:bg-devil shadow-lg shadow-lightPurple/50 text-gray-300 focus:text-gray-300 placeholder:text-gray-600 placeholder:items-center focus:outline focus:outline-2 focus:outline-offset-0 focus:outline-darkPurple transition-all duration-75"
+                        className="h-52 p-4 px-3 rounded-lg border-0 bg-black/70 hover:bg-devil shadow-lg shadow-lightPurple/50 text-gray-300
+                        focus:text-gray-300 placeholder:text-gray-600 placeholder:items-center focus:outline focus:outline-2 focus:outline-offset-0
+                        focus:outline-darkPurple transition-all duration-75 caret-darkPurple"
                         name="message"
                         required
                         maxLength={5000}
