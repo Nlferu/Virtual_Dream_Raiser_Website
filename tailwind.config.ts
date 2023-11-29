@@ -8,6 +8,12 @@ const config: Config = {
                 "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
                 "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
             },
+            transitionTimingFunction: {
+                customBezier: "cubic-bezier(0.4,2.1,0.7,1)",
+            },
+            transitionDuration: {
+                custom: "0.3s",
+            },
             boxShadow: {
                 dark: "0 4px 10px 1px rgb(42 14 97 / 0.5)",
                 blur: "0 0 40px 0 rgb(4,0,22)",
