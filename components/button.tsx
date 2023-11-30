@@ -83,12 +83,12 @@ export function WithdrawCardButton({ name, onClick, disabled }: ButtonProps) {
 export function DisabledButton({ name }: DisabledButtonProps) {
     return (
         <button
-            className="group relative text-gray-700 flex m-auto justify-center items-center overflow-hidden w-[6rem] h-[2.7rem] bg-black/70 rounded-full
+            className="group relative text-gray-700 flex m-auto justify-center items-center overflow-hidden w-[6rem] h-[2.7rem] bg-black/75 rounded-full
                 after:content-[''] after:absolute after:w-[12rem] after:h-[10rem] after:bg-linear-black after:animate-fullSpin
                 active:scale-[1.01]"
         >
             <span
-                className="absolute flex font-bold justify-center items-center inset-[0.2rem] bg-black rounded-full z-[1]
+                className="absolute flex font-bold justify-center items-center inset-[0.2rem] bg-[#020202] rounded-full z-[1]
                 duration-custom ease-customBezier
                 group-active-scale[1.01]"
             >

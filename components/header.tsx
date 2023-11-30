@@ -10,7 +10,7 @@ export default function Header() {
     return (
         <div>
             <div className="w-full h-[4rem] fixed top-0 shadow-lg shadow-lightPurple/50 bg-[#03001417] backdrop-blur-md z-[100]">
-                <div className="w-full h-full flex items-center justify-between px-10">
+                <div className="w-full h-full flex items-center justify-between px-[1rem] sm:px-10">
                     <a className="flex items-center">
                         <Image src="/icon.png" alt="logo" width={50} height={50} quality="95" priority={true} />
                         <span className="text-xl font-bold ml-[0.7rem] hidden md:block text-gray-300">Virtual Dream Raiser</span>
