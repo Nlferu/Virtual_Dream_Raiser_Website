@@ -32,7 +32,7 @@ export const dreamsData = [
         creator: "0x1234...5678",
         designatedWallet: "0x1234...5678",
         id: "1",
-        status: "Active",
+        status: true,
         description:
             "Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet...",
         totalGathered: 1,
@@ -41,10 +41,10 @@ export const dreamsData = [
         promoted: true,
     },
     {
-        creator: "0x1234...5678",
+        creator: "0x50e2a33B9E04e78bF1F1d1F94b0be95Be63C23e7",
         designatedWallet: "0x1234...5678",
         id: "1",
-        status: "Active",
+        status: true,
         description:
             "Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet...",
         totalGathered: 500,
@@ -56,7 +56,7 @@ export const dreamsData = [
         creator: "0x1234...5678",
         designatedWallet: "0x1234...5678",
         id: "1",
-        status: "Active",
+        status: false,
         description:
             "Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet...",
         totalGathered: 100,
@@ -65,10 +65,10 @@ export const dreamsData = [
         promoted: true,
     },
     {
-        creator: "0x1234...5678",
+        creator: "0x50e2a33B9E04e78bF1F1d1F94b0be95Be63C23e7",
         designatedWallet: "0x1234...5678",
         id: "1",
-        status: "Active",
+        status: false,
         description:
             "Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet...",
         totalGathered: 2375,
@@ -80,7 +80,7 @@ export const dreamsData = [
         creator: "0x1234...5678",
         designatedWallet: "0x1234...5678",
         id: "1",
-        status: "Active",
+        status: true,
         description:
             "Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet...",
         totalGathered: 900,
@@ -92,7 +92,7 @@ export const dreamsData = [
         creator: "0x1234...5678",
         designatedWallet: "0x1234...5678",
         id: "1",
-        status: "Active",
+        status: false,
         description:
             "Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet...",
         totalGathered: 500,
@@ -104,7 +104,7 @@ export const dreamsData = [
         creator: "0x1234...5678",
         designatedWallet: "0x1234...5678",
         id: "1",
-        status: "Active",
+        status: true,
         description:
             "Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet...",
         totalGathered: 660,
@@ -116,7 +116,7 @@ export const dreamsData = [
         creator: "0x1234...5678",
         designatedWallet: "0x1234...5678",
         id: "1",
-        status: "Active",
+        status: true,
         description:
             "Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet...",
         totalGathered: 500,
@@ -128,7 +128,7 @@ export const dreamsData = [
         creator: "0x1234...5678",
         designatedWallet: "0x1234...5678",
         id: "1",
-        status: "Active",
+        status: true,
         description:
             "Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet...",
         totalGathered: 752,
@@ -140,7 +140,7 @@ export const dreamsData = [
         creator: "0x1234...5678",
         designatedWallet: "0x1234...5678",
         id: "1",
-        status: "Active",
+        status: true,
         description:
             "Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet... Lorem ipsum dolor sit amet...",
         totalGathered: 500,

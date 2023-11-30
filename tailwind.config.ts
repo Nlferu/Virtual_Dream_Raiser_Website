@@ -9,6 +9,7 @@ const config: Config = {
                 "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
 
                 "linear-gradient": "linear-gradient(0, #5ddcff 10%, #3c67e3 40%, #ce4dbb)",
+                "linear-withdraw": "linear-gradient(0, #2A0E61 10%, #7042f861 40%, #ffffff)",
                 "linear-light": "linear-gradient(0, #5ddcff 0%, #3c67e3 10%, #ce4dbb)",
                 "linear-black": "linear-gradient(0, #000000 30%, #a4a4a4 250%, #ffffff)",
             },
