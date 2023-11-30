@@ -8,9 +8,6 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import "@/styles/globals.css"
 
-/** @dev To be removed */
-import { NotificationProvider } from "web3uikit"
-
 const inter = Inter({ subsets: ["latin"] })
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -23,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
             </Head>
 
             <MoralisProvider initializeOnMount={false}>
+                <StarsCanvas />
                 <Header />
                 <Component {...pageProps} />
                 <Footer />

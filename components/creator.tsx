@@ -1,14 +1,12 @@
 import React, { useState, ChangeEvent } from "react"
-import SectionHeading from "./section-heading"
 import { creatorInputs } from "@/lib/data"
-import { handleError, handleSuccess } from "@/actions/createDream"
-import SubmitButton from "./submit-button"
-import contract from "@/contracts/VirtualDreamRaiser.json"
-
-import { TestButton } from "@/components/button"
+import { Button } from "@/components/button"
 import { useWeb3Contract, useMoralis } from "react-moralis"
 import { ethers } from "ethers"
+import { handleError, handleSuccess } from "@/actions/createDream"
 import { validateString, getErrorMessage } from "@/lib/utils"
+import SectionHeading from "./section-heading"
+import contract from "@/contracts/VirtualDreamRaiser.json"
 
 export default function Creator() {
     const [formData, setFormData] = useState({ goal: "", expiration: "", wallet: "", description: "" })
@@ -107,7 +105,7 @@ export default function Creator() {
                         onChange={handleInputChange}
                     />
                 </div>
-                <TestButton name="Create Dream" onClick={handleCreateDream} disabled={isLoading} />
+                <Button name="Create Dream" onClick={handleCreateDream} disabled={isLoading} />
             </form>
         </section>
     )
