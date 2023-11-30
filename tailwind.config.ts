@@ -38,7 +38,6 @@ const config: Config = {
             },
             animation: {
                 fullSpin: "fullSpin 3s linear infinite",
-                delayedSpin: "fullSpin 3s linear infinite 1500ms",
             },
         },
     },
