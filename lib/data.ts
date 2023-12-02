@@ -29,7 +29,7 @@ export const creatorInputs = [
 
 export const dreamsData = [
     {
-        creator: "0x1234...5678",
+        creator: "0x0000...000000",
         designatedWallet: "0x1234...5678",
         id: "1",
         status: true,

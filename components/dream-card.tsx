@@ -2,27 +2,17 @@ import React, { useState, ChangeEvent } from "react"
 import { CardButton, WithdrawCardButton, DisabledButton } from "./button"
 import { useWeb3Contract, useMoralis } from "react-moralis"
 
-/**@dev Card Data
- * creator
- * designated wallet
- * total gathered / goal
- * id
- * status
- * description
- * time left to expiration
- * promoted ?
- */
-
 type DreamCardProps = {
-    creator: string
-    designatedWallet: string
-    totalGathered: number
-    goal: number
+    creators: (string | undefined)[]
+    designatedWallets: (string | undefined)[]
     id: string
-    status: boolean
-    description: string
-    timeLeftToExpiration: string
-    promoted: boolean
+    statuses: (boolean | undefined)[]
+    descriptions: (string | undefined)[]
+    gathereds: (number | undefined)[]
+    goals: (number | undefined)[]
+    expirations: (number | undefined)[]
+    promoteds: (boolean | undefined)[]
+    dreamId: number
 }
 
 const truncateStr = (fullStr: string, strLen: number) => {
@@ -38,13 +28,49 @@ const truncateStr = (fullStr: string, strLen: number) => {
     return fullStr.substring(0, frontChars) + separator + fullStr.substring(fullStr.length - backChars)
 }
 
-export default function DreamCard({ creator, designatedWallet, totalGathered, goal, id, status, description, timeLeftToExpiration, promoted }: DreamCardProps) {
+export default function DreamCard({
+    creators,
+    designatedWallets,
+    id,
+    statuses,
+    descriptions,
+    gathereds,
+    goals,
+    expirations,
+    promoteds,
+    dreamId,
+}: DreamCardProps) {
     const [amount, setAmount] = useState<string>()
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const { isWeb3Enabled, account } = useMoralis()
+    let progress = 0
 
-    const progress = (totalGathered / goal) * 100
-    const creatorWallet = truncateStr(creator || "", 15)
+    if (
+        creators[dreamId] === undefined ||
+        designatedWallets[dreamId] === undefined ||
+        statuses[dreamId] === undefined ||
+        descriptions[dreamId] === undefined ||
+        gathereds[dreamId] === undefined ||
+        goals[dreamId] === undefined ||
+        expirations[dreamId] === undefined ||
+        promoteds[dreamId] === undefined
+    ) {
+        creators[dreamId] = "0x0000...000000"
+        designatedWallets[dreamId] = "0x0000...000000"
+        statuses[dreamId] = false
+        descriptions[dreamId] = ""
+        gathereds[dreamId] = 0
+        goals[dreamId] = 1
+        expirations[dreamId] = 0
+        promoteds[dreamId] = false
+    } else {
+        if (dreamId !== undefined && goals[dreamId] !== 0) {
+            progress = ((gathereds[dreamId] as number) / goals[dreamId]!) * 100
+        }
+    }
+
+    const creatorWallet = truncateStr(creators[dreamId] || "", 15)
+    const wallet = truncateStr(designatedWallets[dreamId] || "", 15)
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target
@@ -61,7 +87,7 @@ export default function DreamCard({ creator, designatedWallet, totalGathered, go
         try {
             console.log("Funded")
             console.log(account)
-            console.log(creator)
+            console.log(creators[dreamId])
             console.log(amount)
         } catch (error) {
             console.log("Error 404 -> just kidding: Some unexpected error occured!")
@@ -79,23 +105,24 @@ export default function DreamCard({ creator, designatedWallet, totalGathered, go
                 <strong className="text-cyan-500">Creator:</strong> {creatorWallet}
             </div>
             <div>
-                <strong className="text-cyan-500">Designated Wallet:</strong> {designatedWallet}
+                <strong className="text-cyan-500">Designated Wallet:</strong> {wallet}
             </div>
 
             <div>
-                <strong className="text-cyan-500">Status:</strong> {status ? <>true</> : <>false</>}
+                <strong className="text-cyan-500">Status:</strong> {statuses[dreamId] ? <>true</> : <>false</>}
             </div>
 
             <div>
                 <strong className="flex text-center items-center justify-center text-cyan-500">Description:</strong>{" "}
-                <div className="flex flex-wrap text-center min-h-[10rem]">{description}</div>
+                <div className="flex flex-wrap text-center min-h-[10rem]">{descriptions[dreamId]}</div>
             </div>
 
             <div>
-                Raised <strong className="text-cyan-500">{totalGathered} ETH</strong> out of <strong className="text-cyan-500">{goal} ETH</strong>
+                Raised <strong className="text-cyan-500">{gathereds[dreamId]} ETH</strong> out of{" "}
+                <strong className="text-cyan-500">{goals[dreamId]} ETH</strong>
             </div>
             <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                {totalGathered > goal ? (
+                {gathereds[dreamId]! > goals[dreamId]! ? (
                     <div className="bg-lightPurple text-xs font-medium text-cyan-500 text-center p-0.5 leading-none rounded-full" style={{ width: `${100}%` }}>
                         {`${Math.round(progress)}%`}
                     </div>
@@ -110,7 +137,7 @@ export default function DreamCard({ creator, designatedWallet, totalGathered, go
             </div>
 
             <div>
-                <strong className="text-cyan-500">Time Left:</strong> {timeLeftToExpiration} days left
+                <strong className="text-cyan-500">Time Left:</strong> {expirations[dreamId]} days left
             </div>
 
             <div className="my-[0.25rem]">
@@ -126,9 +153,9 @@ export default function DreamCard({ creator, designatedWallet, totalGathered, go
                 ></input>
             </div>
 
-            {isWeb3Enabled && account == creator.toLowerCase() ? (
+            {isWeb3Enabled && account == creators[dreamId]?.toLowerCase() ? (
                 <div className="flex gap-8">
-                    {status ? (
+                    {statuses[dreamId] ? (
                         <div>
                             <CardButton name="Fund" onClick={handleFundDream} disabled={isLoading} />
                         </div>
@@ -144,7 +171,7 @@ export default function DreamCard({ creator, designatedWallet, totalGathered, go
                 </div>
             ) : (
                 <div>
-                    {status ? (
+                    {statuses[dreamId] ? (
                         <div>
                             <CardButton name="Fund" onClick={handleFundDream} disabled={isLoading} />
                         </div>
@@ -157,7 +184,7 @@ export default function DreamCard({ creator, designatedWallet, totalGathered, go
             )}
 
             <div>
-                <strong>Promoted:</strong> {promoted ? "Yes" : "No"}
+                <strong>promoteds:</strong> {promoteds ? "Yes" : "No"}
             </div>
         </div>
     )
