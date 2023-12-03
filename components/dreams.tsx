@@ -277,7 +277,7 @@ export default function Dreams() {
         }
 
         fetchData()
-    }, [isWeb3Enabled])
+    }, [isWeb3Enabled, dreams])
 
     return (
         <section id="dreams" className="scroll-mt-28 mb-28 sm:mb-40 z-30 w-full flex flex-col items-center justify-center">

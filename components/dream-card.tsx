@@ -184,7 +184,7 @@ export default function DreamCard({
             )}
 
             <div>
-                <strong>promoteds:</strong> {promoteds ? "Yes" : "No"}
+                <strong>Promoted:</strong> {promoteds[dreamId] ? <>true</> : <>false</>}
             </div>
         </div>
     )
