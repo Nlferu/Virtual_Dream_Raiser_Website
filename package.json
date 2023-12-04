@@ -19,6 +19,7 @@
     "react-moralis": "^1.4.2",
     "react-hot-toast": "^2.4.1",
     "web3uikit": "^1.0.4",
+    "clsx": "^1.2.1",
     "@react-three/drei": "^9.88.4",
     "@react-three/fiber": "^8.15.4",
     "@heroicons/react": "^2.0.18",

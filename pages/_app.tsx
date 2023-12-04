@@ -6,6 +6,7 @@ import Head from "next/head"
 import StarsCanvas from "@/components/starBackground"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import ActiveSectionContextProvider from "@/context/active-section-context"
 import "@/styles/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -20,11 +21,13 @@ export default function App({ Component, pageProps }: AppProps) {
             </Head>
 
             <MoralisProvider initializeOnMount={false}>
-                <Header />
-                <Component {...pageProps} />
-                <Footer />
+                <ActiveSectionContextProvider>
+                    <Header />
+                    <Component {...pageProps} />
+                    <Footer />
 
-                <Toaster position="bottom-right" />
+                    <Toaster position="bottom-right" />
+                </ActiveSectionContextProvider>
             </MoralisProvider>
         </div>
     )

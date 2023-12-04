@@ -7,12 +7,14 @@ import { handleError, handleSuccess } from "@/actions/createDream"
 import { validateString, getErrorMessage } from "@/lib/utils"
 import SectionHeading from "./section-heading"
 import contract from "@/contracts/VirtualDreamRaiser.json"
+import { useSectionInView } from "@/lib/hooks"
 
 export default function Creator() {
     const [formData, setFormData] = useState({ goal: "", expiration: "", wallet: "", description: "" })
     const [isLoading, setIsLoading] = useState<boolean>(false)
     /* @ts-ignore */
     const { runContractFunction } = useWeb3Contract()
+    const { ref } = useSectionInView("Creator", 1)
 
     const contractAddress = contract.address
     const abi = contract.abi
@@ -72,7 +74,7 @@ export default function Creator() {
     }
 
     return (
-        <section id="creator" className="scroll-mt-28 flex flex-col justify-center items-center w-[min(100%,38rem)] z-30">
+        <section ref={ref} id="creator" className="scroll-mt-28 flex flex-col justify-center items-center w-[min(100%,38rem)] z-30">
             <SectionHeading>Create Dream</SectionHeading>
 
             <form className="flex flex-col">

@@ -1,6 +1,10 @@
+import { useSectionInView } from "@/lib/hooks"
+
 export default function Info() {
+    const { ref } = useSectionInView("Home", 1)
+
     return (
-        <section id="home" className="mt-[14rem] z-50 scroll-mt-[100rem] flex flex-col items-center text-center leading-8">
+        <section ref={ref} id="home" className="mt-[14rem] z-50 scroll-mt-[100rem] flex flex-col items-center text-center leading-8">
             <h1 className="max-w-[25rem] text-4xl font-bold capitalize mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
                 Virtual Dream Raiser
             </h1>
