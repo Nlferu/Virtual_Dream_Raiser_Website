@@ -3,6 +3,7 @@ import { CardButton, WithdrawCardButton, DisabledButton } from "./button"
 import { useWeb3Contract, useMoralis } from "react-moralis"
 import { BigNumber, ethers } from "ethers"
 import { truncateStr } from "@/lib/utils"
+import { handleError, handleSuccess } from "@/lib/errorHandlers"
 import contract from "@/contracts/VirtualDreamRaiser.json"
 
 type DreamCardProps = {
@@ -11,8 +12,11 @@ type DreamCardProps = {
 
 export default function DreamCard({ dreamId }: DreamCardProps) {
     const [amount, setAmount] = useState<string>()
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isLoadingFund, setIsLoadingFund] = useState<boolean>(false)
+    const [isLoadingWithdraw, setIsLoadingWithdraw] = useState<boolean>(false)
     const { isWeb3Enabled, account } = useMoralis()
+    /* @ts-ignore */
+    const { runContractFunction } = useWeb3Contract()
     const contractAddress = contract.address
     const contractAbi = contract.abi
 
@@ -143,16 +147,51 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
     }
 
     const handleFundDream = async () => {
-        setIsLoading(true)
+        setIsLoadingFund(true)
 
         try {
-            console.log("Funded")
-            console.log(account)
-            console.log(amount)
+            const fundDream = {
+                abi: contractAbi,
+                contractAddress: contractAddress,
+                functionName: "fundDream",
+                params: { dreamId: dreamId },
+                msgValue: ethers.utils.parseEther(amount as string).toString(),
+            }
+
+            await runContractFunction({
+                params: fundDream,
+                onError: () => handleError(),
+                onSuccess: () => handleSuccess(),
+            })
         } catch (error) {
             console.log("Error 404 -> just kidding: Some unexpected error occured!")
         } finally {
-            setIsLoading(false)
+            setIsLoadingFund(false)
+        }
+
+        resetForm()
+    }
+
+    const handleWithdrawDream = async () => {
+        setIsLoadingWithdraw(true)
+
+        try {
+            const withdrawDream = {
+                abi: contractAbi,
+                contractAddress: contractAddress,
+                functionName: "realizeDream",
+                params: { dreamId: dreamId },
+            }
+
+            await runContractFunction({
+                params: withdrawDream,
+                onError: () => handleError(),
+                onSuccess: () => handleSuccess(),
+            })
+        } catch (error) {
+            console.log("Error 404 -> just kidding: Some unexpected error occured!")
+        } finally {
+            setIsLoadingWithdraw(false)
         }
 
         resetForm()
@@ -216,7 +255,7 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
                 <div className="flex gap-8">
                     {status ? (
                         <div>
-                            <CardButton name="Fund" onClick={handleFundDream} disabled={isLoading} />
+                            <CardButton name="Fund" onClick={handleFundDream} disabled={isLoadingFund} />
                         </div>
                     ) : (
                         <div>
@@ -225,14 +264,14 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
                     )}
 
                     <div>
-                        <WithdrawCardButton name="Withdraw" onClick={handleFundDream} disabled={isLoading} />
+                        <WithdrawCardButton name="Withdraw" onClick={handleWithdrawDream} disabled={isLoadingWithdraw} />
                     </div>
                 </div>
             ) : (
                 <div>
                     {status ? (
                         <div>
-                            <CardButton name="Fund" onClick={handleFundDream} disabled={isLoading} />
+                            <CardButton name="Fund" onClick={handleFundDream} disabled={isLoadingFund} />
                         </div>
                     ) : (
                         <div>

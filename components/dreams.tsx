@@ -24,9 +24,7 @@ export default function Dreams() {
     const { ref } = useSectionInView("Dreams", 1)
     const contractAddress = contract.address
     const contractAbi = contract.abi
-    const { isWeb3Enabled, account } = useMoralis()
-    // @ts-ignore
-    const { data, error, runContractFunction } = useWeb3Contract()
+    const { isWeb3Enabled } = useMoralis()
 
     const { runContractFunction: getTotalDreams, data: dreamz } = useWeb3Contract({
         abi: contractAbi,
