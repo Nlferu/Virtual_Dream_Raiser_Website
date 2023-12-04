@@ -2,11 +2,11 @@ import type { AppProps } from "next/app"
 import { MoralisProvider } from "react-moralis"
 import { Inter } from "next/font/google"
 import { Toaster } from "react-hot-toast"
+import ActiveSectionContextProvider from "@/context/active-section-context"
 import Head from "next/head"
-import StarsCanvas from "@/components/starBackground"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
-import ActiveSectionContextProvider from "@/context/active-section-context"
+import StarsCanvas from "@/components/starBackground"
 import "@/styles/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })

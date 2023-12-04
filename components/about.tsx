@@ -1,6 +1,6 @@
 import { useSectionInView } from "@/lib/hooks"
 
-export default function Info() {
+export default function About() {
     const { ref } = useSectionInView("Home", 1)
 
     return (

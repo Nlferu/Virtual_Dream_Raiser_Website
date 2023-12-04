@@ -2,23 +2,11 @@ import React, { useState, useEffect, ChangeEvent } from "react"
 import { CardButton, WithdrawCardButton, DisabledButton } from "./button"
 import { useWeb3Contract, useMoralis } from "react-moralis"
 import { BigNumber, ethers } from "ethers"
+import { truncateStr } from "@/lib/utils"
 import contract from "@/contracts/VirtualDreamRaiser.json"
 
 type DreamCardProps = {
     dreamId: number
-}
-
-const truncateStr = (fullStr: string, strLen: number) => {
-    if (fullStr.length <= strLen) return fullStr
-
-    const separator = "..."
-
-    var sepLen = separator.length,
-        charsToShow = strLen - sepLen,
-        frontChars = Math.ceil(charsToShow / 2),
-        backChars = Math.floor(charsToShow / 2)
-
-    return fullStr.substring(0, frontChars) + separator + fullStr.substring(fullStr.length - backChars)
 }
 
 export default function DreamCard({ dreamId }: DreamCardProps) {
@@ -27,7 +15,6 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
     const { isWeb3Enabled, account } = useMoralis()
     const contractAddress = contract.address
     const contractAbi = contract.abi
-    let progress = 0
 
     const {
         runContractFunction: getCreator,
@@ -134,6 +121,7 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
     const wallet = truncateStr((walletz as string) || "0x0000000000000000000000000000000000000000", 15)
     let gathered = 0
     let goal = 0
+    let progress = 0
 
     if (bigGathered) {
         gathered = parseFloat(ethers.utils.formatEther(bigGathered as BigNumber))

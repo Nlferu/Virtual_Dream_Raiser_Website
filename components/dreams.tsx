@@ -1,26 +1,10 @@
-"use client"
-
-import React, { useState, useEffect } from "react"
-import SectionHeading from "./section-heading"
-import DreamCard from "./dream-card"
-import { dreamsData } from "@/lib/data"
+import React, { useEffect } from "react"
 import { motion } from "framer-motion"
-import { BigNumber, ethers } from "ethers"
 import { useWeb3Contract, useMoralis } from "react-moralis"
 import { useSectionInView } from "@/lib/hooks"
+import DreamCard from "./dream-card"
+import SectionHeading from "./section-heading"
 import contract from "@/contracts/VirtualDreamRaiser.json"
-
-type Dream = {
-    creators: (string | undefined)[]
-    designatedWallets: (string | undefined)[]
-    id: string
-    statuses: (boolean | undefined)[]
-    descriptions: (string | undefined)[]
-    gathereds: (number | undefined)[]
-    goals: (number | undefined)[]
-    expirations: (number | undefined)[]
-    promoteds: (boolean | undefined)[]
-}
 
 const fadeInAnimationVariants = {
     initial: {
