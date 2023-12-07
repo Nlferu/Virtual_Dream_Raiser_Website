@@ -60,7 +60,7 @@ export default function FundVDR() {
                 coin our way. Your support will be invaluable and greatly appreciated!
             </p>
             <input
-                className="h-12 border-0 rounded-full bg-black/70 hover:bg-devil shadow-lg hover:shadow-xl hover:shadow-lightPurple/50 text-center shadow-lightPurple/50 text-gray-300
+                className="mt-[1.5rem] h-12 border-0 rounded-full bg-black/70 hover:bg-devil shadow-lg hover:shadow-xl hover:shadow-lightPurple/50 text-center shadow-lightPurple/50 text-gray-300
                             focus:text-gray-300 placeholder:text-gray-600 focus:outline focus:outline-2 focus:outline-offset-0 focus:outline-darkPurple transition-all duration-75 caret-darkPurple"
                 type="text"
                 name="fund"

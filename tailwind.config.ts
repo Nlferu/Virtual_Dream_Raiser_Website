@@ -22,6 +22,7 @@ const config: Config = {
             boxShadow: {
                 dark: "0 4px 10px 1px rgb(42 14 97 / 0.5)",
                 blur: "0 0 40px 0 rgb(4,0,22)",
+                blurred: "0 0 300px 200px rgba(4, 0, 22, 0.45)",
                 night: "0px 0px 9px rgba(0, 0, 0, 0.8)",
                 nightA: "0px 0px 15px rgba(0, 0, 0, 1)",
             },

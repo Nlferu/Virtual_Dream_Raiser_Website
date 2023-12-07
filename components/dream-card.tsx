@@ -198,35 +198,35 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
     }
 
     return (
-        <div className="bg-lightPurple/10 flex flex-col gap-2 items-center justify-center h-[35rem] w-[20rem] border-[1px] border-lightPurple p-3 rounded-lg shadow-md text-darkPurple">
+        <div className="bg-lightPurple/10 flex flex-col gap-2 items-center justify-center h-[35rem] w-[20rem] border-[1px] border-lightPurple p-3 rounded-lg shadow-md text-gray-300">
             <h2 className="text-lg font-bold mb-2 flex text-center justify-center items-center text-violet-500/90">Dream ID: {dreamId}</h2>
             <div>
-                <strong className="text-cyan-500">Creator:</strong> {creatorWallet}
+                <strong className="text-cyan-700">Creator:</strong> {creatorWallet}
             </div>
             <div>
-                <strong className="text-cyan-500">Designated Wallet:</strong> {wallet}
-            </div>
-
-            <div>
-                <strong className="text-cyan-500">Status:</strong> {(status as boolean) ? <>true</> : <>false</>}
+                <strong className="text-cyan-700">Designated Wallet:</strong> {wallet}
             </div>
 
             <div>
-                <strong className="flex text-center items-center justify-center text-cyan-500">Description:</strong>{" "}
+                <strong className="text-cyan-700">Status:</strong> {(status as boolean) ? <>true</> : <>false</>}
+            </div>
+
+            <div>
+                <strong className="flex text-center items-center justify-center text-cyan-700">Description:</strong>{" "}
                 <div className="flex flex-wrap text-center min-h-[10rem]">{description as string}</div>
             </div>
 
             <div>
-                Raised <strong className="text-cyan-500">{gathered} ETH</strong> out of <strong className="text-cyan-500">{goal} ETH</strong>
+                Raised <strong className="text-cyan-700">{gathered} ETH</strong> out of <strong className="text-cyan-700">{goal} ETH</strong>
             </div>
             <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
                 {gathered > goal ? (
-                    <div className="bg-lightPurple text-xs font-medium text-cyan-500 text-center p-0.5 leading-none rounded-full" style={{ width: `${100}%` }}>
+                    <div className="bg-lightPurple text-xs font-medium text-cyan-700 text-center p-0.5 leading-none rounded-full" style={{ width: `${100}%` }}>
                         {`${Math.round(progress)}%`}
                     </div>
                 ) : (
                     <div
-                        className="bg-lightPurple text-xs font-medium text-cyan-500 text-center p-0.5 leading-none rounded-full"
+                        className="bg-lightPurple text-xs font-medium text-cyan-700 text-center p-0.5 leading-none rounded-full"
                         style={{ width: `${progress}%` }}
                     >
                         {`${Math.round(progress)}%`}
@@ -235,7 +235,7 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
             </div>
 
             <div>
-                <strong className="text-cyan-500">Time Left:</strong> {(expiration as BigNumber)?.toNumber()} days left
+                <strong className="text-cyan-700">Time Left:</strong> {(expiration as BigNumber)?.toNumber()} days left
             </div>
 
             <div className="my-[0.25rem]">
