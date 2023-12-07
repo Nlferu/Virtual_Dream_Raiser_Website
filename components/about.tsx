@@ -13,6 +13,11 @@ export default function About() {
                 with a groundbreaking project, a visionary game developer pushing boundaries, or an individual seeking support for a charitable cause, this
                 platform is your launchpad.
             </div>
+            <div className="text-white max-w-[45rem] mx-[1rem]">
+                Our community is based on the principle of mutual trust, and{" "}
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">Virtual Dream Raiser</span> has been
+                designed to encourage compliance with the principles of transparency.
+            </div>
         </section>
     )
 }

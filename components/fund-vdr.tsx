@@ -56,8 +56,8 @@ export default function FundVDR() {
             <SectionHeading>Fund Virtual Dream Raiser</SectionHeading>
             <p className="text-white text-center mb-[1rem]">
                 If you appreciate our mission and efforts, consider supporting{" "}
-                <span className="font-medium text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">Virtual Dream Raiser</span> by tossing
-                a coin our way. Your support will be invaluable and greatly appreciated!
+                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">Virtual Dream Raiser</span> by tossing a
+                coin our way. Your support will be invaluable and greatly appreciated!
             </p>
             <input
                 className="h-12 border-0 rounded-full bg-black/70 hover:bg-devil shadow-lg hover:shadow-xl hover:shadow-lightPurple/50 text-center shadow-lightPurple/50 text-gray-300
