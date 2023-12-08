@@ -1,8 +1,8 @@
 import BlackHole from "@/components/black-hole"
 import About from "@/components/about"
-import Encryption from "@/components/encryption"
 import Creator from "@/components/creator"
 import Dreams from "@/components/dreams"
+import Wallets from "@/components/whiteWalletList"
 import FundVDR from "@/components/fund-vdr"
 import Lottery from "@/components/lottery"
 
@@ -14,6 +14,7 @@ export default function Index() {
                 <About />
                 <Creator />
                 <Dreams />
+                <Wallets />
                 <FundVDR />
                 <Lottery />
             </div>

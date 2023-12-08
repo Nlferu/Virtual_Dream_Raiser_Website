@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import { useActiveSectionContext } from "@/context/active-section-context"
 import type { SectionName } from "./types"
@@ -19,4 +19,24 @@ export function useSectionInView(sectionName: SectionName, viewField = 0.75) {
     }, [inView, setActiveSection, timeOfLastClick])
 
     return { ref }
+}
+
+export function useCountdown() {
+    const [secondsLeft, setSecondsLeft] = useState(0)
+
+    useEffect(() => {
+        if (secondsLeft <= 0) return
+
+        const timeout = setTimeout(() => {
+            setSecondsLeft(secondsLeft - 1)
+        }, 1000)
+
+        return () => clearTimeout(timeout)
+    }, [secondsLeft])
+
+    function startTimer(seconds: number) {
+        setSecondsLeft(seconds)
+    }
+
+    return { secondsLeft, startTimer }
 }

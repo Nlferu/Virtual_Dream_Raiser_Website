@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react"
 import { useWeb3Contract, useMoralis } from "react-moralis"
 import { useSectionInView } from "@/lib/hooks"
-import { truncateStr } from "@/lib/utils"
+import { truncateStr, formatTimeLeftLottery } from "@/lib/utils"
 import { BigNumber, ethers } from "ethers"
+import { useCountdown } from "@/lib/hooks"
 import SectionHeading from "./section-heading"
 import contract from "@/contracts/VirtualDreamRewarder.json"
 
 export default function Lottery() {
     const { ref } = useSectionInView("Lottery", 1)
-    const [balance, setBalance] = useState<number>(0)
+    const { secondsLeft, startTimer } = useCountdown()
     const { isWeb3Enabled } = useMoralis()
-    /* @ts-ignore */
-    const { runContractFunction } = useWeb3Contract()
+    const [balance, setBalance] = useState<number>(0)
 
     let initialBalance: BigNumber
     const contractAddress = contract.address
@@ -56,7 +56,7 @@ export default function Lottery() {
     } = useWeb3Contract({
         abi: contractAbi,
         contractAddress: contractAddress,
-        functionName: "getLastTimeStamp",
+        functionName: "getTimeUntilNextDraw",
         params: {},
     })
 
@@ -69,7 +69,12 @@ export default function Lottery() {
         }
     }, [isWeb3Enabled])
 
+    useEffect(() => {
+        startTimer((timeLeft as BigNumber)?.toNumber())
+    }, [timeLeft])
+
     const recentWinner = truncateStr((winner as string) || "0x0000000000000000000000000000000000000000", 15)
+    const formattedTime = formatTimeLeftLottery(secondsLeft)
 
     return (
         <section ref={ref} id="lottery" className="scroll-mt-28 flex flex-col justify-center items-center w-[min(100%,50rem)] z-30 px-4 sm:px-0">
@@ -82,7 +87,7 @@ export default function Lottery() {
                 <div className="mt-3 font-bold text-lg text-cyan-700">Recent Winner:</div>
                 <div>{recentWinner}</div>
                 <div className="mt-3 font-bold text-lg text-cyan-700">Next Winner Picking In:</div>
-                <div>{(timeLeft as BigNumber)?.toNumber()}</div>
+                <div>{formattedTime}</div>
                 <p className="text-white text-center mt-[2rem]">
                     To incentivize and reward contributors, we provide every funder with an opportunity to participate in a lottery draw for a prize. The
                     lottery prize pool continuously grows, accumulating 2% from each funding transaction. This means that for every contribution made, 2% of the

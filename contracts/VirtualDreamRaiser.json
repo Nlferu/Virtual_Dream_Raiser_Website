@@ -1,5 +1,5 @@
 {
-    "address": "0x0605fAe513331AAfC14da80c4c594D36bA8d0128",
+    "address": "0x62D24caEac1D453ae43b50A352cBeD7f2D40eB3E",
     "abi": [
         {
             "inputs": [
@@ -325,7 +325,7 @@
                     "type": "bytes"
                 }
             ],
-            "stateMutability": "nonpayable",
+            "stateMutability": "view",
             "type": "function"
         },
         {
@@ -656,11 +656,6 @@
                 {
                     "internalType": "uint256",
                     "name": "dreamId",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "amount",
                     "type": "uint256"
                 }
             ],

@@ -1,5 +1,5 @@
 {
-    "address": "0x8E225F882c4604951a6D4987cc7CdDF39FfF9142",
+    "address": "0xb13D68A71299048B51Ca14BeEd8f95BE2104C1d6",
     "abi": [
         {
             "inputs": [
@@ -217,44 +217,12 @@
         },
         {
             "inputs": [],
-            "name": "getNumWords",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "pure",
-            "type": "function"
-        },
-        {
-            "inputs": [],
             "name": "getNumberOfPlayers",
             "outputs": [
                 {
                     "internalType": "uint256",
                     "name": "",
                     "type": "uint256"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "index",
-                    "type": "uint256"
-                }
-            ],
-            "name": "getPlayer",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
                 }
             ],
             "stateMutability": "view",
@@ -275,7 +243,7 @@
         },
         {
             "inputs": [],
-            "name": "getRequestConfirmations",
+            "name": "getTimeUntilNextDraw",
             "outputs": [
                 {
                     "internalType": "uint256",
@@ -283,7 +251,7 @@
                     "type": "uint256"
                 }
             ],
-            "stateMutability": "pure",
+            "stateMutability": "view",
             "type": "function"
         },
         {

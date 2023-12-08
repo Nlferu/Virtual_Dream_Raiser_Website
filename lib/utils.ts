@@ -36,3 +36,26 @@ export const truncateStr = (fullStr: string, strLen: number) => {
 
     return fullStr.substring(0, frontChars) + separator + fullStr.substring(fullStr.length - backChars)
 }
+
+export const formatTimeLeft = (seconds: number): string => {
+    const days = Math.floor(seconds / (3600 * 24))
+    const hours = Math.floor((seconds % (3600 * 24)) / 3600)
+    const minutes = Math.floor((seconds % 3600) / 60)
+    const remainingSeconds = seconds % 60
+
+    const formattedTime = `${String(days).padStart(2, "0")}:${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(
+        remainingSeconds
+    ).padStart(2, "0")}`
+
+    return formattedTime
+}
+
+export const formatTimeLeftLottery = (seconds: number): string => {
+    const hours = Math.floor((seconds % (3600 * 24)) / 3600)
+    const minutes = Math.floor((seconds % 3600) / 60)
+    const remainingSeconds = seconds % 60
+
+    const formattedTime = `${String(hours).padStart(2, "0")} : ${String(minutes).padStart(2, "0")} : ${String(remainingSeconds).padStart(2, "0")}`
+
+    return formattedTime
+}
