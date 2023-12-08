@@ -78,7 +78,7 @@ export default function Lottery() {
 
     return (
         <section ref={ref} id="lottery" className="scroll-mt-28 flex flex-col justify-center items-center w-[min(100%,50rem)] z-30 px-4 sm:px-0">
-            <SectionHeading>Lottery</SectionHeading>
+            <SectionHeading>Automated Lottery</SectionHeading>
             <div className="flex flex-col text-white gap-2 text-center z-30 mb-[5rem]">
                 <div className="font-bold text-lg text-cyan-700">Prize Pool:</div>
                 <div>{balance} ETH</div>

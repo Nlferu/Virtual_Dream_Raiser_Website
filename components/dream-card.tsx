@@ -2,10 +2,11 @@ import React, { useState, useEffect, ChangeEvent } from "react"
 import { CardButton, WithdrawCardButton, DisabledButton } from "./button"
 import { useWeb3Contract, useMoralis } from "react-moralis"
 import { BigNumber, ethers } from "ethers"
-import { truncateStr } from "@/lib/utils"
+import { truncateStr, formatTimeLeft } from "@/lib/utils"
 import { handleError, handleSuccess } from "@/lib/errorHandlers"
 import { BsCheckCircleFill } from "react-icons/bs"
 import { FaTimesCircle } from "react-icons/fa"
+import { useCountdown } from "@/lib/hooks"
 import contract from "@/contracts/VirtualDreamRaiser.json"
 
 type DreamCardProps = {
@@ -19,6 +20,7 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
     const { isWeb3Enabled, account } = useMoralis()
     /* @ts-ignore */
     const { runContractFunction } = useWeb3Contract()
+    const { secondsLeft, startTimer } = useCountdown()
     const contractAddress = contract.address
     const contractAbi = contract.abi
 
@@ -123,11 +125,16 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
         }
     }, [isWeb3Enabled])
 
-    const creatorWallet = truncateStr((creator as string) || "0x0000000000000000000000000000000000000000", 15)
-    const wallet = truncateStr((walletz as string) || "0x0000000000000000000000000000000000000000", 15)
+    useEffect(() => {
+        startTimer((expiration as BigNumber)?.toNumber())
+    }, [expiration])
+
     let gathered = 0
     let goal = 0
     let progress = 0
+    const creatorWallet = truncateStr((creator as string) || "0x0000000000000000000000000000000000000000", 15)
+    const wallet = truncateStr((walletz as string) || "0x0000000000000000000000000000000000000000", 15)
+    const formattedTime = formatTimeLeft(secondsLeft)
 
     if (bigGathered) {
         gathered = parseFloat(ethers.utils.formatEther(bigGathered as BigNumber))
@@ -200,7 +207,7 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
     }
 
     return (
-        <div className="bg-lightPurple/10 flex flex-col gap-2 items-center justify-center h-[35rem] w-[20rem] border-[1px] border-lightPurple p-3 rounded-lg shadow-md text-gray-300">
+        <div className="bg-lightPurple/10 flex flex-col gap-2 items-center justify-center h-[37rem] w-[21rem] border-[1px] border-lightPurple p-3 rounded-lg shadow-md text-gray-300">
             <h2 className="text-lg font-bold mb-2 flex text-center justify-center items-center text-violet-500/90">Dream ID: {dreamId}</h2>
             <div>
                 <strong className="text-cyan-700">Creator:</strong> {creatorWallet}
@@ -210,16 +217,21 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
             </div>
 
             <div className="flex gap-2">
-                <strong className="text-cyan-700">Status:</strong>{" "}
-                {(status as boolean) ? (
+                <strong className="text-cyan-700">Verified:</strong>{" "}
+                {(promoted as boolean) ? (
                     <div className="text-green-600 mt-1">
                         <BsCheckCircleFill />
                     </div>
                 ) : (
-                    <div className="text-red-600 mt-1">
+                    <div className="text-orange-600 mt-1">
                         <FaTimesCircle />
                     </div>
                 )}
+            </div>
+
+            <div className="flex gap-2">
+                <strong className="text-cyan-700">Status:</strong>{" "}
+                {(status as boolean) ? <div className="text-green-600/90">Active</div> : <div className="text-orange-500/90">Expired</div>}
             </div>
 
             <div>
@@ -228,7 +240,8 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
             </div>
 
             <div>
-                Raised <strong className="text-cyan-700">{gathered} ETH</strong> out of <strong className="text-cyan-700">{goal} ETH</strong>
+                Raised <strong className="text-cyan-300">{gathered}</strong> <strong className="text-cyan-700">ETH</strong> out of{" "}
+                <strong className="text-cyan-300">{goal} </strong> <strong className="text-cyan-700">ETH</strong>
             </div>
             <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
                 {gathered > goal ? (
@@ -246,7 +259,7 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
             </div>
 
             <div>
-                <strong className="text-cyan-700">Time Left:</strong> {(expiration as BigNumber)?.toNumber()} days left
+                <strong className="text-cyan-700">Time Left:</strong> {formattedTime}
             </div>
 
             <div className="my-[0.25rem]">
@@ -291,10 +304,6 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
                     )}
                 </div>
             )}
-
-            <div>
-                <strong>Promoted:</strong> {promoted ? <>true</> : <>false</>}
-            </div>
         </div>
     )
 }
