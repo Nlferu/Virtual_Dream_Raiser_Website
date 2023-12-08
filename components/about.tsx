@@ -9,9 +9,9 @@ export default function About() {
                 Virtual Dream Raiser
             </h1>
             <div className="text-white max-w-[45rem] mx-[1rem]">
-                Fund raising platform offering a decentralized and fully automated ecosystem where dreams take flight. Whether you're a passionate entrepreneur
-                with a groundbreaking project, a visionary game developer pushing boundaries, or an individual seeking support for a charitable cause, this
-                platform is your launchpad.
+                Fund raising platform offering a decentralized and fully automated ecosystem where dreams take flight. Whether you&apos;re a passionate
+                entrepreneur with a groundbreaking project, a visionary game developer pushing boundaries, or an individual seeking support for a charitable
+                cause, this platform is your launchpad.
             </div>
             <div className="text-white max-w-[45rem] mx-[1rem]">
                 Our community is based on the principle of mutual trust, and{" "}
