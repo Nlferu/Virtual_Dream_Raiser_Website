@@ -73,7 +73,7 @@ export default function Wallets() {
                 ))}
             </div>
 
-            <p className="text-cyan-800 text-center">List of trusted wallet's of charitable organizations and confirmed white hat users</p>
+            <p className="text-cyan-800 text-center">List of trusted wallet&apos;s of charitable organizations and confirmed white hat users</p>
         </section>
     )
 }
