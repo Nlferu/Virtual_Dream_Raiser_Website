@@ -4,6 +4,8 @@ import { useWeb3Contract, useMoralis } from "react-moralis"
 import { BigNumber, ethers } from "ethers"
 import { truncateStr } from "@/lib/utils"
 import { handleError, handleSuccess } from "@/lib/errorHandlers"
+import { BsCheckCircleFill } from "react-icons/bs"
+import { FaTimesCircle } from "react-icons/fa"
 import contract from "@/contracts/VirtualDreamRaiser.json"
 
 type DreamCardProps = {
@@ -207,8 +209,17 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
                 <strong className="text-cyan-700">Designated Wallet:</strong> {wallet}
             </div>
 
-            <div>
-                <strong className="text-cyan-700">Status:</strong> {(status as boolean) ? <>true</> : <>false</>}
+            <div className="flex gap-2">
+                <strong className="text-cyan-700">Status:</strong>{" "}
+                {(status as boolean) ? (
+                    <div className="text-green-600 mt-1">
+                        <BsCheckCircleFill />
+                    </div>
+                ) : (
+                    <div className="text-red-600 mt-1">
+                        <FaTimesCircle />
+                    </div>
+                )}
             </div>
 
             <div>

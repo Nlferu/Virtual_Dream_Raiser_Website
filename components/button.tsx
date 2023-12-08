@@ -25,7 +25,7 @@ export function Button({ name, onClick, disabled }: ButtonProps) {
                 {disabled ? (
                     <div className="h-5 w-5 animate-spin rounded-full border-b-[3px] border-purple-600"></div>
                 ) : (
-                    <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">{name}</div>
+                    <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-cyan-500">{name}</div>
                 )}
             </span>
         </button>
@@ -73,7 +73,7 @@ export function WithdrawCardButton({ name, onClick, disabled }: ButtonProps) {
                 {disabled ? (
                     <div className="h-5 w-5 animate-spin rounded-full border-b-[3px] border-purple-600"></div>
                 ) : (
-                    <div className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">{name}</div>
+                    <div className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-green-500">{name}</div>
                 )}
             </span>
         </button>
