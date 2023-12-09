@@ -21,7 +21,7 @@ const fadeInAnimationVariants = {
 }
 
 export default function Dreams() {
-    const { ref } = useSectionInView("Dreams", 1)
+    const { ref } = useSectionInView("Dreams", 0.5)
     const contractAddress = contract.address
     const contractAbi = contract.abi
     const { isWeb3Enabled } = useMoralis()

@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from "react"
 import { Button } from "@/components/button"
 import { useSectionInView } from "@/lib/hooks"
 import { ethers } from "ethers"
-import { handleError, handleSuccess } from "@/lib/errorHandlers"
+import { handleError, handleSuccess } from "@/lib/error-handlers"
 import { useWeb3Contract } from "react-moralis"
 import SectionHeading from "./section-heading"
 import contract from "@/contracts/VirtualDreamRaiser.json"
@@ -12,7 +12,7 @@ export default function FundVDR() {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     /* @ts-ignore */
     const { runContractFunction } = useWeb3Contract()
-    const { ref } = useSectionInView("Fund", 1)
+    const { ref } = useSectionInView("Fund", 0.9)
     const contractAddress = contract.address
     const contractAbi = contract.abi
 

@@ -3,9 +3,10 @@ import { creatorInputs } from "@/lib/data"
 import { Button } from "@/components/button"
 import { useWeb3Contract } from "react-moralis"
 import { ethers } from "ethers"
-import { handleError, handleSuccess } from "@/lib/errorHandlers"
+import { handleError, handleSuccess } from "@/lib/error-handlers"
 import { useSectionInView } from "@/lib/hooks"
 import { validateString, getErrorMessage } from "@/lib/utils"
+import { motion } from "framer-motion"
 import SectionHeading from "./section-heading"
 import contract from "@/contracts/VirtualDreamRaiser.json"
 
@@ -14,7 +15,7 @@ export default function Creator() {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     /* @ts-ignore */
     const { runContractFunction } = useWeb3Contract()
-    const { ref } = useSectionInView("Creator", 1)
+    const { ref } = useSectionInView("Creator", 0.75)
 
     const contractAddress = contract.address
     const abi = contract.abi
@@ -74,7 +75,16 @@ export default function Creator() {
     }
 
     return (
-        <section ref={ref} id="creator" className="scroll-mt-28 flex flex-col justify-center items-center w-[min(100%,38rem)] z-30">
+        <motion.section
+            ref={ref}
+            id="creator"
+            className="scroll-mt-28 flex flex-col justify-center items-center w-[min(100%,38rem)] z-30"
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+                delay: 0.1,
+            }}
+        >
             <SectionHeading>Create Dream</SectionHeading>
 
             <form className="flex flex-col">
@@ -109,6 +119,6 @@ export default function Creator() {
                 </div>
                 <Button name="Create Dream" onClick={handleCreateDream} disabled={isLoading} />
             </form>
-        </section>
+        </motion.section>
     )
 }

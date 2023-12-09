@@ -3,7 +3,7 @@ import { CardButton, WithdrawCardButton, DisabledButton } from "./button"
 import { useWeb3Contract, useMoralis } from "react-moralis"
 import { BigNumber, ethers } from "ethers"
 import { truncateStr, formatTimeLeft } from "@/lib/utils"
-import { handleError, handleSuccess } from "@/lib/errorHandlers"
+import { handleError, handleSuccess } from "@/lib/error-handlers"
 import { BsCheckCircleFill } from "react-icons/bs"
 import { FaTimesCircle } from "react-icons/fa"
 import { useCountdown } from "@/lib/hooks"
@@ -268,7 +268,6 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
                             focus:text-gray-300 placeholder:text-gray-600 focus:outline focus:outline-2 focus:outline-offset-0 focus:outline-darkPurple transition-all duration-75 caret-darkPurple"
                     type="text"
                     name="fund"
-                    id="fund"
                     placeholder="Amount (ETH)"
                     value={amount}
                     onChange={handleInputChange}
