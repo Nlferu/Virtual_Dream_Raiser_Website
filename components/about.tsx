@@ -26,7 +26,7 @@ export default function About() {
             <div className="text-gray-300 max-w-[41rem] mt-[1rem] mx-[1rem]">
                 Our community is based on the principle of mutual trust, and{" "}
                 <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">Virtual Dream Raiser</span> has been
-                designed to encourage compliance with the principles of transparency.
+                designed to simplify funds gathering and encourage compliance with the principles of transparency.
             </div>
         </motion.section>
     )

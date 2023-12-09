@@ -88,7 +88,7 @@ export default function Wallets() {
 
             <Typed
                 className="text-cyan-800 text-center"
-                strings={["List of trusted wallet's of charitable organizations and confirmed white hat users"]}
+                strings={["List of trusted wallets of charitable organizations and confirmed white hat users"]}
                 typeSpeed={120}
                 backSpeed={5}
                 loop
