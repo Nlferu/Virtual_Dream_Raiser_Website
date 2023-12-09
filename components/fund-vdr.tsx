@@ -54,7 +54,7 @@ export default function FundVDR() {
     return (
         <section ref={ref} id="fund" className="scroll-mt-28 flex flex-col justify-center items-center w-[min(100%,45rem)] z-30 px-4 sm:px-0 my-[2rem]">
             <SectionHeading>Fund Virtual Dream Raiser</SectionHeading>
-            <p className="text-white text-center mb-[1rem]">
+            <p className="text-gray-300 text-center mb-[1rem]">
                 If you appreciate our mission and efforts, consider supporting{" "}
                 <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">Virtual Dream Raiser</span> by tossing a
                 coin our way. Your support will be invaluable and greatly appreciated!

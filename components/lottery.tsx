@@ -119,7 +119,7 @@ export default function Lottery() {
             </div>
 
             <Typed
-                className="text-gray-300 text-center mt-[1rem] mb-[6rem] max-w-[90%] font-bold"
+                className="text-gray-100 text-center mt-[1rem] mb-[6rem] max-w-[90%] font-bold"
                 strings={["Powered By Chainlink !"]}
                 typeSpeed={120}
                 backSpeed={50}
