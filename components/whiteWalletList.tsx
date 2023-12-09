@@ -85,16 +85,15 @@ export default function Wallets() {
                     ))}
                 </div>
             )}
-            <div className="text-cyan-800 text-center">
-                <Typed
-                    className="ml-[0.5rem] text-nite dark:text-alfa"
-                    strings={["List of trusted wallet's of charitable organizations and confirmed white hat users"]}
-                    typeSpeed={120}
-                    backSpeed={5}
-                    loop
-                    // showCursor={false}
-                />
-            </div>
+
+            <Typed
+                className="text-cyan-800 text-center"
+                strings={["List of trusted wallet's of charitable organizations and confirmed white hat users"]}
+                typeSpeed={120}
+                backSpeed={5}
+                loop
+                // showCursor={false}
+            />
         </section>
     )
 }

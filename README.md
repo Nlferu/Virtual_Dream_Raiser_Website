@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Virtual Dream Raiser
 
-## Getting Started
+**Live Project:** https://virtual-dream-raiser.vercel.app/
 
-First, run the development server:
+**Chainlink Constellation Hackathon Project**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![Alt text](readme/DemoScreen.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Welcome to Virtual Dream Raiser, a cutting-edge web3 platform designed to transform dreams into reality. We believe that every great idea, innovative project, and heartfelt cause deserves a chance to thrive. Harnessing the power of blockchain technology and cryptocurrency, Virtual Dream Raiser provides a dynamic and inclusive space where creators, innovators, and visionaries converge.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+At Virtual Dream Raiser, we embrace the cosmic potential of dreams, offering a decentralized ecosystem where dreams take flight. Whether you're a passionate entrepreneur with a groundbreaking project, a visionary game developer pushing boundaries, or an individual seeking support for a charitable cause, this platform is your launchpad.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Crafted to empower dreamers worldwide, our platform fosters a vibrant community where dreams are tossed into the realm of possibility. Through crowdfunding and crypto-enabled contributions, backers can actively participate in shaping the future by supporting dreams that resonate with them.
 
-## Learn More
+Our mission is to bridge aspirations with action, creating a space where dreams find solidarity, support, and momentum. Here, the boundaries of imagination are expanded, and the spirit of innovation thrives.
 
-To learn more about Next.js, take a look at the following resources:
+Join us at Virtual Dream Raiser, where the virtual meets the visionary, and together, we elevate dreams to new heights.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![Alt text](readme/TestsScreen.png)
