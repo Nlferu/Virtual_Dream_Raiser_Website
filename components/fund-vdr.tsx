@@ -12,7 +12,7 @@ export default function FundVDR() {
     const [isLoading, setIsLoading] = useState<boolean>(false)
     /* @ts-ignore */
     const { runContractFunction } = useWeb3Contract()
-    const { ref } = useSectionInView("Fund", 0.9)
+    const { ref } = useSectionInView("Fund", 1)
     const contractAddress = contract.address
     const contractAbi = contract.abi
 
@@ -52,7 +52,7 @@ export default function FundVDR() {
     }
 
     return (
-        <section ref={ref} id="fund" className="scroll-mt-28 flex flex-col justify-center items-center w-[min(100%,45rem)] z-30 px-4 sm:px-0">
+        <section ref={ref} id="fund" className="scroll-mt-28 flex flex-col justify-center items-center w-[min(100%,45rem)] z-30 px-4 sm:px-0 my-[2rem]">
             <SectionHeading>Fund Virtual Dream Raiser</SectionHeading>
             <p className="text-white text-center mb-[1rem]">
                 If you appreciate our mission and efforts, consider supporting{" "}
