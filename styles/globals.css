@@ -23,3 +23,42 @@ html ::-webkit-scrollbar-thumb {
 html ::-webkit-scrollbar-thumb:hover {
     background: rgb(115, 54, 255);
 }
+
+/* Styling Connect Button */
+
+.ksnQwN {
+    background: rgba(12, 9, 9, 1) !important;
+}
+
+/* Connect */
+.bHfmdT {
+    background: rgb(42 10 97 / 0.45) !important;
+}
+
+/* Outer Background */
+.rWEug {
+    background: rgb(42 10 97 / 0.45) !important;
+}
+
+/* Inner Background */
+.icwVFe {
+    background: rgb(35 1 97 / 1) !important;
+}
+
+/* Connect Wallet Table */
+.jlhJib {
+    background: rgb(42 1 95) !important;
+}
+
+.iQsfUR {
+    background: rgb(10, 0, 32) !important;
+}
+
+/* Table Wallets */
+.bsXekn:hover {
+    background: rgb(10, 0, 32) !important;
+}
+
+.jJZwMY:hover {
+    background: rgb(40, 20, 92) !important;
+}

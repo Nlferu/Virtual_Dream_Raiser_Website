@@ -3,6 +3,7 @@ import { useWeb3Contract, useMoralis } from "react-moralis"
 import { FiCopy, FiCheck } from "react-icons/fi"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import { motion } from "framer-motion"
+import Typed from "react-typed"
 import ConnectionChecker from "./connection-checker"
 import contract from "@/contracts/VirtualDreamRaiser.json"
 
@@ -84,8 +85,16 @@ export default function Wallets() {
                     ))}
                 </div>
             )}
-
-            <p className="text-cyan-800 text-center">List of trusted wallet&apos;s of charitable organizations and confirmed white hat users</p>
+            <div className="text-cyan-800 text-center">
+                <Typed
+                    className="ml-[0.5rem] text-nite dark:text-alfa"
+                    strings={["List of trusted wallet's of charitable organizations and confirmed white hat users"]}
+                    typeSpeed={120}
+                    backSpeed={5}
+                    loop
+                    // showCursor={false}
+                />
+            </div>
         </section>
     )
 }

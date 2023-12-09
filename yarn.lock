@@ -7364,6 +7364,14 @@ react-router@6.20.0:
   dependencies:
     "@remix-run/router" "1.13.0"
 
+react-typed@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-typed/-/react-typed-1.2.0.tgz#c5fb0bea4c972545c29fceb9c1d22495b6636b58"
+  integrity sha512-aDsaA6zkjAFJs8285APOqE85l/kwJ0/ZJmBhARwUrza4TTttrMM5FcMCGEDdThdfUdHo/0l9WXmxp1m2ik4qdw==
+  dependencies:
+    prop-types "^15.6.0"
+    typed.js "^2.0.6"
+
 react-use-measure@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/react-use-measure/-/react-use-measure-2.1.1.tgz#5824537f4ee01c9469c45d5f7a8446177c6cc4ba"
@@ -8410,6 +8418,11 @@ typed-array-length@^1.0.4:
     call-bind "^1.0.2"
     for-each "^0.3.3"
     is-typed-array "^1.1.9"
+
+typed.js@^2.0.6:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/typed.js/-/typed.js-2.1.0.tgz#b97a06111a5f57d6a59acfdd36d4f9b891ee13b4"
+  integrity sha512-bDuXEf7YcaKN4g08NMTUM6G90XU25CK3bh6U0THC/Mod/QPKlEt9g/EjvbYB8x2Qwr2p6J6I3NrsoYaVnY6wsQ==
 
 typedarray-to-buffer@3.1.5, typedarray-to-buffer@^3.1.5:
   version "3.1.5"
