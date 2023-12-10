@@ -8,7 +8,7 @@ export default function About() {
         <motion.section
             ref={ref}
             id="home"
-            className="mt-[17rem] z-50 scroll-mt-[100rem] flex flex-col items-center text-center leading-8"
+            className="mt-[17rem] z-50 scroll-mt-[100rem] flex flex-col items-center text-center leading-8 px-4 w-full"
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -27,6 +27,10 @@ export default function About() {
                 Our community is based on the principle of mutual trust, and{" "}
                 <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">Virtual Dream Raiser</span> has been
                 designed to simplify funds gathering and encourage compliance with the principles of transparency.
+            </div>
+
+            <div className="flex justify-center mt-[2rem] w-[90%]">
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/hKRSpH7v4yQ" allowFullScreen></iframe>
             </div>
         </motion.section>
     )
