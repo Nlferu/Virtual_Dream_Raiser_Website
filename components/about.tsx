@@ -8,7 +8,7 @@ export default function About() {
         <motion.section
             ref={ref}
             id="home"
-            className="mt-[14rem] z-50 scroll-mt-[100rem] flex flex-col items-center text-center leading-8"
+            className="mt-[17rem] z-50 scroll-mt-[100rem] flex flex-col items-center text-center leading-8"
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{

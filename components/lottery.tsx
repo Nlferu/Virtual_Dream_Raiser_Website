@@ -12,7 +12,7 @@ import raiser from "@/contracts/VirtualDreamRaiser.json"
 import rewarder from "@/contracts/VirtualDreamRewarder.json"
 
 export default function Lottery() {
-    const { ref } = useSectionInView("Lottery", 1)
+    const { ref } = useSectionInView("Lottery", 0.9)
     const { secondsLeft, startTimer } = useCountdown()
     const [playersAmount, setPlayersAmount] = useState<number>(0)
     const { isWeb3Enabled } = useMoralis()
