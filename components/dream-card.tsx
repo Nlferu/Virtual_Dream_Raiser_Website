@@ -276,7 +276,15 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
             </div>
 
             <div>
-                <strong className="text-cyan-700">Time Left:</strong> {formattedTime}
+                {(expiration as BigNumber)?.toNumber() > 0 ? (
+                    <div>
+                        <strong className="text-cyan-700">Time Left:</strong> {formattedTime}{" "}
+                    </div>
+                ) : (
+                    <div>
+                        Time Left: <span className="text-orange-500/90">Expired</span>
+                    </div>
+                )}
             </div>
 
             <div className="my-[0.25rem]">
