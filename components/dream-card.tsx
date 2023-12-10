@@ -112,6 +112,17 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
         params: { dreamId: dreamId },
     })
 
+    const {
+        runContractFunction: getDreamBalance,
+        data: dreamBalance,
+        error: dreamBalanceError,
+    } = useWeb3Contract({
+        abi: contractAbi,
+        contractAddress: contractAddress,
+        functionName: "getDreamBalance",
+        params: { dreamId: dreamId },
+    })
+
     useEffect(() => {
         if (isWeb3Enabled) {
             getCreator()
@@ -122,6 +133,7 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
             getGoal()
             getTimeLeft()
             getPromoted()
+            getDreamBalance()
         }
     }, [isWeb3Enabled])
 
@@ -132,6 +144,7 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
     let gathered = 0
     let goal = 0
     let progress = 0
+    let dreamBal = 0
     const creatorWallet = truncateStr((creator as string) || "0x0000000000000000000000000000000000000000", 15)
     const wallet = truncateStr((walletz as string) || "0x0000000000000000000000000000000000000000", 15)
     const formattedTime = formatTimeLeft(secondsLeft)
@@ -145,6 +158,10 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
     }
 
     progress = (gathered / goal) * 100
+
+    if (dreamBalance) {
+        dreamBal = parseFloat(ethers.utils.formatEther(dreamBalance as BigNumber))
+    }
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target
@@ -287,7 +304,11 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
                     )}
 
                     <div>
-                        <WithdrawCardButton name="Withdraw" onClick={handleWithdrawDream} disabled={isLoadingWithdraw} />
+                        {dreamBal > 0 ? (
+                            <WithdrawCardButton name="Withdraw" onClick={handleWithdrawDream} disabled={isLoadingWithdraw} />
+                        ) : (
+                            <DisabledButton name="Withdraw" />
+                        )}
                     </div>
                 </div>
             ) : (

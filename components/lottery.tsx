@@ -8,36 +8,39 @@ import { motion } from "framer-motion"
 import Typed from "react-typed"
 import ConnectionChecker from "./connection-checker"
 import SectionHeading from "./section-heading"
-import contract from "@/contracts/VirtualDreamRewarder.json"
+import raiser from "@/contracts/VirtualDreamRaiser.json"
+import rewarder from "@/contracts/VirtualDreamRewarder.json"
 
 export default function Lottery() {
     const { ref } = useSectionInView("Lottery", 1)
     const { secondsLeft, startTimer } = useCountdown()
+    const [playersAmount, setPlayersAmount] = useState<number>(0)
     const { isWeb3Enabled } = useMoralis()
-    const [balance, setBalance] = useState<number>(0)
 
-    let initialBalance: BigNumber
-    const contractAddress = contract.address
-    const contractAbi = contract.abi
+    const raiserAddress = raiser.address
+    const raiserAbi = raiser.abi
+    const contractAddress = rewarder.address
+    const contractAbi = rewarder.abi
 
-    const getBalance = async () => {
-        if (typeof (window as any).ethereum !== "undefined") {
-            const provider = new ethers.providers.Web3Provider((window as any).ethereum)
-
-            initialBalance = await provider.getBalance(contractAddress)
-            const convertedBalance = parseFloat(ethers.utils.formatEther(initialBalance))
-            setBalance(convertedBalance)
-        }
-    }
+    const {
+        runContractFunction: getPrizePool,
+        data: prize,
+        error: prizeError,
+    } = useWeb3Contract({
+        abi: raiserAbi,
+        contractAddress: raiserAddress,
+        functionName: "getPrizePool",
+        params: {},
+    })
 
     const {
         runContractFunction: getPlayers,
         data: players,
         error: playersError,
     } = useWeb3Contract({
-        abi: contractAbi,
-        contractAddress: contractAddress,
-        functionName: "getNumberOfPlayers",
+        abi: raiserAbi,
+        contractAddress: raiserAddress,
+        functionName: "getNewPlayers",
         params: {},
     })
 
@@ -65,7 +68,7 @@ export default function Lottery() {
 
     useEffect(() => {
         if (isWeb3Enabled) {
-            getBalance()
+            getPrizePool()
             getPlayers()
             getWinner()
             getTimeLeft()
@@ -74,10 +77,18 @@ export default function Lottery() {
 
     useEffect(() => {
         startTimer((timeLeft as BigNumber)?.toNumber())
-    }, [timeLeft])
+        if (players && Array.isArray(players)) {
+            setPlayersAmount(players.length)
+        }
+    }, [timeLeft, players])
 
+    let prizePool = 0
     const recentWinner = truncateStr((winner as string) || "0x0000000000000000000000000000000000000000", 15)
     const formattedTime = formatTimeLeftLottery(secondsLeft)
+
+    if (prize) {
+        prizePool = parseFloat(ethers.utils.formatEther(prize as BigNumber))
+    }
 
     return (
         <section ref={ref} id="lottery" className="scroll-mt-28 flex flex-col justify-center items-center w-[min(100%,50rem)] z-30 px-4 sm:px-0">
@@ -92,9 +103,9 @@ export default function Lottery() {
                     transition={{ duration: 1.5 }}
                 >
                     <div className="font-bold text-lg text-cyan-500">Prize Pool:</div>
-                    <div>{balance} ETH</div>
+                    <div>{prizePool} ETH</div>
                     <div className="mt-3 font-bold text-lg text-cyan-500">Funders:</div>
-                    <div>{(players as BigNumber)?.toNumber()}</div>
+                    <div>{playersAmount}</div>
                     <div className="mt-3 font-bold text-lg text-cyan-500">Recent Winner:</div>
                     <div>{recentWinner}</div>
                     <div className="mt-3 font-bold text-lg text-cyan-500">Next Winner Picking In:</div>
