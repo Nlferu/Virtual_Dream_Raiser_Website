@@ -13,9 +13,9 @@ import rewarder from "@/contracts/VirtualDreamRewarder.json"
 
 export default function Lottery() {
     const { ref } = useSectionInView("Lottery", 0.9)
+    const { isWeb3Enabled } = useMoralis()
     const { secondsLeft, startTimer } = useCountdown()
     const [balance, setBalance] = useState<number>(0)
-    const { isWeb3Enabled } = useMoralis()
 
     let initialBalance: BigNumber
     const contractAddress = rewarder.address
