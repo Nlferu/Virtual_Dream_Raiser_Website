@@ -8,7 +8,6 @@ import { motion } from "framer-motion"
 import Typed from "react-typed"
 import ConnectionChecker from "./connection-checker"
 import SectionHeading from "./section-heading"
-import raiser from "@/contracts/VirtualDreamRaiser.json"
 import rewarder from "@/contracts/VirtualDreamRewarder.json"
 
 export default function Lottery() {
