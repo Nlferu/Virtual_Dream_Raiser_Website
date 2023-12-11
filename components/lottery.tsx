@@ -99,7 +99,7 @@ export default function Lottery() {
                     <div className="mt-3 font-bold text-lg text-cyan-500">Recent Winner:</div>
                     <div>{recentWinner}</div>
                     <div className="mt-3 font-bold text-lg text-cyan-500">Next Winner Picking In:</div>
-                    <div>{secondsLeft > 0 ? formattedTime : <div>Waiting For Players...</div>}</div>
+                    <div>{secondsLeft > 0 ? formattedTime : <div>Waiting For Funders...</div>}</div>
                 </motion.div>
             )}
 
