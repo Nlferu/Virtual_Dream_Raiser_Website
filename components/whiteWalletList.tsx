@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useWeb3Contract, useMoralis } from "react-moralis"
 import { FiCopy, FiCheck } from "react-icons/fi"
 import { CopyToClipboard } from "react-copy-to-clipboard"
+import { truncateStr } from "@/lib/utils"
 import { motion } from "framer-motion"
 import Typed from "react-typed"
 import ConnectionChecker from "./connection-checker"
@@ -11,6 +12,7 @@ export default function Wallets() {
     const { isWeb3Enabled } = useMoralis()
     const [whiteWallets, setWhiteWallets] = useState<string[]>([])
     const [copied, setCopied] = useState<number[]>([])
+    const [isMobile, setIsMobile] = useState(false)
 
     const contractAddress = contract.address
     const contractAbi = contract.abi
@@ -52,6 +54,21 @@ export default function Wallets() {
         }
     }, [wallets])
 
+    useEffect(() => {
+        const handleResize = () => {
+            const screenWidth = window.innerWidth
+            setIsMobile(screenWidth <= 500)
+        }
+
+        handleResize()
+
+        window.addEventListener("resize", handleResize)
+
+        return () => {
+            window.removeEventListener("resize", handleResize)
+        }
+    }, [])
+
     return (
         <section className="flex flex-col justify-center items-center w-[min(100%,45rem)] z-30 px-4 sm:px-0 text-center">
             <div className="text-3xl font-medium capitalize mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 z-30">
@@ -60,7 +77,7 @@ export default function Wallets() {
             {!isWeb3Enabled ? (
                 <ConnectionChecker>Connect Your Wallet To See Wallets</ConnectionChecker>
             ) : (
-                <div className="flex flex-col text-white gap-1 text-xs sm:text-base mb-[2rem]">
+                <div className="flex flex-col text-white gap-1 text-base mb-[2rem]">
                     {whiteWallets.map((wallet, index) => (
                         <motion.div
                             className="text-cyan-600 flex gap-3 justify-end items-center"
@@ -69,7 +86,7 @@ export default function Wallets() {
                             whileInView={{ opacity: 1 }}
                             transition={{ duration: 1.5 }}
                         >
-                            {wallet}
+                            {isMobile ? truncateStr(wallet, 15) : wallet}
                             <div className="text-white transition duration-1000 hover:cursor-pointer">
                                 {!copied.includes(index) ? (
                                     <CopyToClipboard text={wallet} onCopy={() => handleCopy(index)}>

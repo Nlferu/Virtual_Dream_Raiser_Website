@@ -2,20 +2,10 @@ import React from "react"
 
 export default function BlackHole() {
     return (
-        <div className="absolute top-[-29.5rem] overflow-hidden">
-            <div className="z-[1] relative flex items-center justify-center">
-                <video
-                    className="max-w-[119.5rem] max-h-[80rem] rotate-180 shadow-blur object-cover"
-                    preload="false"
-                    playsInline
-                    loop
-                    muted
-                    autoPlay
-                    src="/blackhole.webm"
-                >
-                    <source src="/blackhole.webm" type="video/webm" />
-                </video>
-            </div>
+        <div className="absolute top-[-24.6rem] flex flex-col h-full w-full">
+            <video autoPlay muted loop className="rotate-180 h-full w-full left-0 z-[1] object-cover ">
+                <source src="/blackhole.webm" type="video/webm" />
+            </video>
         </div>
     )
 }

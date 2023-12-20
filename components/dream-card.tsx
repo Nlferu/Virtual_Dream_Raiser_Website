@@ -224,7 +224,7 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
     }
 
     return (
-        <div className="bg-lightPurple/10 flex flex-col gap-2 items-center justify-center h-[37rem] w-[21rem] border-[1px] border-lightPurple p-3 rounded-lg shadow-md text-gray-300">
+        <div className="bg-lightPurple/10 flex flex-col gap-2 items-center justify-center h-[37rem] w-[20rem] sm:w-[21rem] border-[1px] border-lightPurple p-3 rounded-lg shadow-md text-gray-300">
             <h2 className="text-lg font-bold mb-2 flex text-center justify-center items-center text-violet-500/90">Dream ID: {dreamId}</h2>
             <div>
                 <strong className="text-cyan-700">Creator:</strong> {creatorWallet}
