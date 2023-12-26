@@ -141,27 +141,13 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
         startTimer((expiration as BigNumber)?.toNumber())
     }, [expiration])
 
-    let gathered = 0
-    let goal = 0
-    let progress = 0
-    let dreamBal = 0
     const creatorWallet = truncateStr((creator as string) || "0x0000000000000000000000000000000000000000", 15)
     const wallet = truncateStr((walletz as string) || "0x0000000000000000000000000000000000000000", 15)
     const formattedTime = formatTimeLeft(secondsLeft)
-
-    if (bigGathered) {
-        gathered = parseFloat(ethers.utils.formatEther(bigGathered as BigNumber))
-    }
-
-    if (bigGoal) {
-        goal = parseFloat(ethers.utils.formatEther(bigGoal as BigNumber))
-    }
-
-    progress = (gathered / goal) * 100
-
-    if (dreamBalance) {
-        dreamBal = parseFloat(ethers.utils.formatEther(dreamBalance as BigNumber))
-    }
+    const gathered = parseFloat(ethers.utils.formatEther((bigGathered as BigNumber) || 0))
+    const goal = parseFloat(ethers.utils.formatEther((bigGoal as BigNumber) || 0))
+    const progress = (gathered / goal) * 100 || 0
+    const dreamBal = parseFloat(ethers.utils.formatEther((dreamBalance as BigNumber) || 0))
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target

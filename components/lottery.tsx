@@ -16,7 +16,6 @@ export default function Lottery() {
     const { secondsLeft, startTimer } = useCountdown()
     const [balance, setBalance] = useState<number>(0)
 
-    let initialBalance: BigNumber
     const contractAddress = rewarder.address
     const contractAbi = rewarder.abi
 
@@ -24,7 +23,7 @@ export default function Lottery() {
         if (typeof (window as any).ethereum !== "undefined") {
             const provider = new ethers.providers.Web3Provider((window as any).ethereum)
 
-            initialBalance = await provider.getBalance(contractAddress)
+            const initialBalance: BigNumber = await provider.getBalance(contractAddress)
             const convertedBalance = parseFloat(ethers.utils.formatEther(initialBalance))
             setBalance(convertedBalance)
         }
@@ -98,7 +97,11 @@ export default function Lottery() {
                     <div className="mt-3 font-bold text-lg text-cyan-500">Recent Winner:</div>
                     <div>{recentWinner}</div>
                     <div className="mt-3 font-bold text-lg text-cyan-500">Next Winner Picking In:</div>
-                    <div>{secondsLeft > 0 ? formattedTime : <div>Waiting For Funders...</div>}</div>
+                    {(players as BigNumber)?.toNumber() <= 0 ? (
+                        <div>Waiting For Funders...</div>
+                    ) : (
+                        <div>{secondsLeft && balance > 0.01 ? formattedTime : <div>Prize Pool Too Small...</div>}</div>
+                    )}
                 </motion.div>
             )}
 
