@@ -2,7 +2,7 @@ import React, { useState, useEffect, ChangeEvent } from "react"
 import { CardButton, WithdrawCardButton, DisabledButton } from "./button"
 import { useWeb3Contract, useMoralis } from "react-moralis"
 import { BigNumber, ethers } from "ethers"
-import { truncateStr, formatTimeLeft } from "@/lib/utils"
+import { truncateStr, formatTimeLeft, getErrorMessage } from "@/lib/utils"
 import { handleError, handleSuccess } from "@/lib/error-handlers"
 import { BsCheckCircleFill } from "react-icons/bs"
 import { FaTimesCircle } from "react-icons/fa"
@@ -172,11 +172,11 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
 
             await runContractFunction({
                 params: fundDream,
-                onError: () => handleError(),
-                onSuccess: () => handleSuccess(),
+                onError: (error) => handleError(`Dream Funding Error: \n${error.message}`),
+                onSuccess: () => handleSuccess(`Dream Funding Success: \nDream Id ${dreamId} Funded Successfully!`),
             })
         } catch (error) {
-            console.log("Error 404 -> just kidding: Some unexpected error occured!")
+            handleError(getErrorMessage(error))
         } finally {
             setIsLoadingFund(false)
         }
@@ -197,11 +197,11 @@ export default function DreamCard({ dreamId }: DreamCardProps) {
 
             await runContractFunction({
                 params: withdrawDream,
-                onError: () => handleError(),
-                onSuccess: () => handleSuccess(),
+                onError: (error) => handleError(`Dream Funds Withdrawal Error: \n${error.message}`),
+                onSuccess: () => handleSuccess(`Dream Funds Withdrawal: \nDream Funds Withdrew Successfully!`),
             })
         } catch (error) {
-            console.log("Error 404 -> just kidding: Some unexpected error occured!")
+            handleError(getErrorMessage(error))
         } finally {
             setIsLoadingWithdraw(false)
         }

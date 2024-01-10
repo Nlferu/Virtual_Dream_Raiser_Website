@@ -1,7 +1,5 @@
-/** @dev To be corrected for all values */
-
 export const validateString = (value: unknown, maxLength: number): value is string => {
-    if (!value || typeof value !== "string" || value.length > maxLength) {
+    if (typeof value !== "string" || value.length > maxLength) {
         return false
     }
 

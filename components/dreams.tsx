@@ -27,7 +27,7 @@ export default function Dreams() {
     const contractAbi = contract.abi
     const { isWeb3Enabled } = useMoralis()
 
-    const { runContractFunction: getTotalDreams, data: dreamz } = useWeb3Contract({
+    const { runContractFunction: getTotalDreams, data: dreams } = useWeb3Contract({
         abi: contractAbi,
         contractAddress: contractAddress,
         functionName: "getTotalDreams",
@@ -48,7 +48,7 @@ export default function Dreams() {
                 <ConnectionChecker>Connect Your Wallet To See Wallets</ConnectionChecker>
             ) : (
                 <div className="max-w-[100rem] flex items-center justify-center flex-wrap w-full gap-10 list-none mt-[1rem]">
-                    {Array.from({ length: (dreamz as number) || 0 }, (_, index) => (
+                    {Array.from({ length: (dreams as number) || 0 }, (_, index) => (
                         <motion.li
                             className=""
                             key={index}

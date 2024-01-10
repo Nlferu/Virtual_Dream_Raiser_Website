@@ -4,8 +4,8 @@ import { Button } from "@/components/button"
 import { useWeb3Contract } from "react-moralis"
 import { ethers } from "ethers"
 import { handleError, handleSuccess } from "@/lib/error-handlers"
-import { useSectionInView } from "@/lib/hooks"
 import { validateString, getErrorMessage } from "@/lib/utils"
+import { useSectionInView } from "@/lib/hooks"
 import { motion } from "framer-motion"
 import SectionHeading from "./section-heading"
 import contract from "@/contracts/VirtualDreamRaiser.json"
@@ -29,30 +29,34 @@ export default function Creator() {
         setIsLoading(true)
 
         try {
-            console.log(`Goal: ${goal} Exp: ${expiration} Wallet: ${wallet} Desc: ${description}`)
+            if (!validateString(formData.description, 5000)) {
+                handleError("Description Error: Maximum characters amount (5000) exceeded")
+            } else {
+                console.log(`Goal: ${goal} Exp: ${expiration} Wallet: ${wallet} Desc: ${description}`)
 
-            // ETH Conversion To Wei
-            let convGoal = ethers.utils.parseEther(goal as string)
+                // ETH Conversion To Wei
+                let convGoal = ethers.utils.parseEther(goal as string)
 
-            const createDream = {
-                abi: abi,
-                contractAddress: contractAddress,
-                functionName: "createDream",
-                params: {
-                    goal: convGoal,
-                    description: description,
-                    expiration: expiration,
-                    organizatorWallet: wallet,
-                },
+                const createDream = {
+                    abi: abi,
+                    contractAddress: contractAddress,
+                    functionName: "createDream",
+                    params: {
+                        goal: convGoal,
+                        description: description,
+                        expiration: expiration,
+                        organizatorWallet: wallet,
+                    },
+                }
+
+                await runContractFunction({
+                    params: createDream,
+                    onSuccess: () => handleSuccess("Dream Creation: \nDream Created Successfully!"),
+                    onError: (error) => handleError(`Dream Creation Error: \n${error.message}`),
+                })
             }
-
-            await runContractFunction({
-                params: createDream,
-                onSuccess: () => handleSuccess(),
-                onError: () => handleError(),
-            })
         } catch (error) {
-            console.log("Error 404 -> just kidding: Some unexpected error occured!")
+            handleError(getErrorMessage(error))
         } finally {
             setIsLoading(false)
         }
@@ -100,6 +104,7 @@ export default function Creator() {
                             placeholder={input.placeholder}
                             value={formData[input.name]}
                             onChange={handleInputChange}
+                            required
                         ></input>
                     ))}
                 </div>
@@ -110,11 +115,11 @@ export default function Creator() {
                         focus:outline-darkPurple transition-all duration-75 caret-darkPurple"
                         name="description"
                         id="description"
-                        required
                         maxLength={5000}
                         placeholder="Description..."
                         value={formData.description}
                         onChange={handleInputChange}
+                        required
                     />
                 </div>
                 <Button name="Create Dream" onClick={handleCreateDream} disabled={isLoading} />

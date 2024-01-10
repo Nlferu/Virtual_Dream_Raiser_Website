@@ -1,28 +1,7 @@
-import { useState } from "react"
-import { ethers } from "ethers"
-import contract from "@/contracts/VirtualDreamRaiser.json"
-import { validateString, getErrorMessage } from "@/lib/utils"
 import toast from "react-hot-toast"
 
-const handleCreateDream = async (formData: FormData) => {
-    const goal = formData.get("goal")
-    const description = formData.get("description")
-
-    if (!validateString(goal, 100)) {
-        return {
-            error: "Invalid sender email",
-        }
-    }
-
-    if (!validateString(description, 5000)) {
-        return {
-            error: "Invalid message",
-        }
-    }
-}
-
-export async function handleSuccess() {
-    toast.success("Action Performed Successfully", {
+export async function handleSuccess(message: string) {
+    toast.success(message, {
         style: {
             border: "1px solid rgba(67, 52, 28, 0.8)",
             background: "rgba(37, 32, 35, 0.4)",
@@ -36,8 +15,8 @@ export async function handleSuccess() {
     })
 }
 
-export async function handleError() {
-    toast.error("Error Occured", {
+export async function handleError(error: string) {
+    toast.error(error, {
         style: {
             border: "1px solid #713200",
             background: "rgba(37, 32, 35, 0.4)",

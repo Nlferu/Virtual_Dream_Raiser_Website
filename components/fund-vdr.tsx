@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from "react"
 import { Button } from "@/components/button"
 import { useSectionInView } from "@/lib/hooks"
 import { ethers } from "ethers"
+import { getErrorMessage } from "@/lib/utils"
 import { handleError, handleSuccess } from "@/lib/error-handlers"
 import { useWeb3Contract } from "react-moralis"
 import SectionHeading from "./section-heading"
@@ -30,11 +31,11 @@ export default function FundVDR() {
 
             await runContractFunction({
                 params: fundVDR,
-                onError: () => handleError(),
-                onSuccess: () => handleSuccess(),
+                onError: (error) => handleError(`VDR Funding Error: \n${error.message}`),
+                onSuccess: () => handleSuccess(`VDR Funding Success: \nVirtual Dream Raiser Funded Successfully!`),
             })
         } catch (error) {
-            console.log("Error 404 -> just kidding: Some unexpected error occured!")
+            handleError(getErrorMessage(error))
         } finally {
             setIsLoading(false)
         }
@@ -59,6 +60,7 @@ export default function FundVDR() {
                 <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">Virtual Dream Raiser</span> by tossing a
                 coin our way. Your support will be invaluable and greatly appreciated!
             </p>
+
             <input
                 className="mt-[1.5rem] h-12 border-0 rounded-full bg-black/70 hover:bg-devil shadow-lg hover:shadow-xl hover:shadow-lightPurple/50 text-center shadow-lightPurple/50 text-gray-300
                             focus:text-gray-300 placeholder:text-gray-600 focus:outline focus:outline-2 focus:outline-offset-0 focus:outline-darkPurple transition-all duration-75 caret-darkPurple"
@@ -69,6 +71,7 @@ export default function FundVDR() {
                 value={amount}
                 onChange={handleInputChange}
             ></input>
+
             <Button name="Fund VDR" onClick={handleFundVDR} disabled={isLoading} />
         </section>
     )
